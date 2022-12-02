@@ -1,25 +1,32 @@
-import { useState } from "react";
+import { BottomContent } from "../../UiComponents/BottomContent/BottomContent";
+import { Bottomer } from "../../UiComponents/FlexBoxes/Bottomer/Bottomer";
+import { Center } from "../../UiComponents/FlexBoxes/Center/Center";
+import { TextBox } from "../../UiComponents/TextBox/TextBox";
+import { paragraphs } from "./introParagraphs";
+import { useIntro } from "./useIntro";
 
 export const Intro = (): JSX.Element => {
-  const [index, setIndex] = useState<number>(0);
-
-  const paragraphs: string[] = [
-    "Hello, and welcome to the World of Pokemon!",
-    "My name is Prof. Oak, some people refer to me as the Pokemon Professor.",
-    "This is what we call a Pokemon.",
-    "There are many different kinds of Pokemon and new ones are still being discovered.",
-    "Some people use Pokemon to battle and compete, others dedicate their life to studying them.",
-    "But for Software Engineers, Pokemon are an excellent way to write large scale projects,",
-    " without having to think of their own content.",
-  ];
-
-  const handleClick = () => {
-    const max = paragraphs.length - 1;
-
-    if (index < max) {
-      setIndex(index + 1);
-    } else console.log("should route away now");
-  };
-
-  return <div onClick={handleClick}>{paragraphs[index]}</div>;
+  const { index, pikaStyle, handleClick } = useIntro();
+  return (
+    <BottomContent
+      bottomContent={<TextBox text={paragraphs[index]} onClick={handleClick} />}
+    >
+      <Bottomer>
+        <Center>
+          <>
+            <img
+              alt="pikachu"
+              style={pikaStyle}
+              src={process.env.PUBLIC_URL + "/assets/pikachu.png"}
+            />
+            <img
+              alt="oak"
+              src={process.env.PUBLIC_URL + "/assets/oak.jpeg"}
+              height="250px"
+            />
+          </>
+        </Center>
+      </Bottomer>
+    </BottomContent>
+  );
 };
