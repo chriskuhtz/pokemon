@@ -1,4 +1,4 @@
-const border = "3px solid black";
+import { thickBorder } from "../Globals/globals";
 
 export const textBoxStyle = {
   display: "flex",
@@ -8,18 +8,18 @@ export const textBoxStyle = {
 };
 
 export const leftHalfCircleStyle = {
-  borderTop: border,
-  borderBottom: border,
-  borderLeft: border,
+  borderTop: thickBorder,
+  borderBottom: thickBorder,
+  borderLeft: thickBorder,
   borderBottomLeftRadius: "50%",
   borderTopLeftRadius: "50%",
   width: "2rem",
   backgroundColor: "white",
 };
 export const rightHalfCircleStyle = {
-  borderTop: border,
-  borderBottom: border,
-  borderRight: border,
+  borderTop: thickBorder,
+  borderBottom: thickBorder,
+  borderRight: thickBorder,
   borderBottomRightRadius: "50%",
   borderTopRightRadius: "50%",
   width: "2rem",
@@ -29,8 +29,8 @@ export const rightHalfCircleStyle = {
 export const middleBoxStyle = (clickable: boolean) => {
   return {
     cursor: clickable ? "default" : "text",
-    borderTop: border,
-    borderBottom: border,
+    borderTop: thickBorder,
+    borderBottom: thickBorder,
     padding: "1rem",
     display: "flex",
     justifyContent: "center",
