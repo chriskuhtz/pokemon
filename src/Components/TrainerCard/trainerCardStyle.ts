@@ -1,4 +1,7 @@
-import { thickBorder, thinBorder } from "../../UiComponents/Globals/globals";
+import {
+  thickBorder,
+  thinBorder,
+} from "../../UiComponents/GlobalStyles/globalStyles";
 
 export const outerBoxStyle = {
   border: thickBorder,

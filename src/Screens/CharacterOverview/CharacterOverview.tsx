@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { TrainerCard } from "../../Components/TrainerCard/TrainerCard";
+import { getCurrentPlayerId } from "../../functions/handleCurrentPlayerId";
 import { useGetPlayerQuery } from "../../services/player";
 import { BottomContent } from "../../UiComponents/BottomContent/BottomContent";
 import { Bottomer } from "../../UiComponents/FlexBoxes/Bottomer/Bottomer";
@@ -10,7 +11,8 @@ import { LoadingScreen } from "../LoadingScreen/LoadingScreen";
 import { characterOverviewBox } from "./characterOverviewStyle";
 
 export const CharacterOverview = () => {
-  const { data, isLoading } = useGetPlayerQuery();
+  const currentId = getCurrentPlayerId() ?? -1;
+  const { data, isLoading } = useGetPlayerQuery(currentId);
   const navigate = useNavigate();
 
   if (isLoading) {
@@ -23,6 +25,7 @@ export const CharacterOverview = () => {
 
   return (
     <BottomContent
+      justifyContent="flex-end"
       bottomContent={<TextBox text={`I see, so you are ${data.name}.`} />}
     >
       <Bottomer>

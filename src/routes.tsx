@@ -3,15 +3,18 @@ import { CharacterOverview } from "./Screens/CharacterOverview/CharacterOverview
 import { CharacterSelection } from "./Screens/CharacterSelection/CharacterSelection";
 import { Intro } from "./Screens/Intro/Intro";
 import { NameSelection } from "./Screens/NameSelection/NameSelection";
+import { SaveFileSelection } from "./Screens/SaveFileSelection/SaveFileSelection";
 
 export enum ROUTES {
-  INTRO = "/",
+  SAVEFILESELECTION = "/",
+  INTRO = "/intro",
   NAMESELECTION = "/name-selection",
   CHARACTERSELECTION = "/character-selection",
   CHARACTEROVERVIEW = "/character-overview",
 }
 
 export const createdRoutes = createRoutesFromElements([
+  <Route path={ROUTES.SAVEFILESELECTION} element={<SaveFileSelection />} />,
   <Route path={ROUTES.INTRO} element={<Intro />} />,
   <Route path={ROUTES.NAMESELECTION} element={<NameSelection />} />,
   <Route path={ROUTES.CHARACTERSELECTION} element={<CharacterSelection />} />,

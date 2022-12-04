@@ -1,4 +1,4 @@
-import { thickBorder } from "../Globals/globals";
+import { thickBorder } from "../GlobalStyles/globalStyles";
 
 export const textBoxStyle = {
   display: "flex",

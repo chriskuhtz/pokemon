@@ -9,6 +9,7 @@ export const Intro = (): JSX.Element => {
   const { index, pikaStyle, handleClick } = useIntro();
   return (
     <BottomContent
+      justifyContent="flex-end"
       bottomContent={<TextBox text={paragraphs[index]} onClick={handleClick} />}
     >
       <Bottomer>

@@ -1,12 +1,13 @@
-import { flexDirectionColumn } from "../Globals/globals";
+import { flexDirectionColumn } from "../GlobalStyles/globalStyles";
 
-export const outerBoxStyle = {
-  height: "100vh",
-
-  width: "100vw",
-  display: "flex",
-  flexDirection: flexDirectionColumn,
-  justifyContent: "flex-end",
+export const outerBoxStyle = (justifyContent: "flex-end" | "space-between") => {
+  return {
+    height: "100vh",
+    width: "100vw",
+    display: "flex",
+    flexDirection: flexDirectionColumn,
+    justifyContent: justifyContent,
+  };
 };
 
 export const bottomContentStyle = {
