@@ -1,4 +1,4 @@
-import { flexDirectionColumn } from "../../Globals/globals";
+import { flexDirectionColumn } from "../../GlobalStyles/globalStyles";
 
 export const bottomerStyle = {
   display: "flex",

@@ -1,7 +1,9 @@
 {
-  "player": {
-    "id": 645,
-    "name": "Chris",
-    "character": 6
-  }
+  "players": [
+    {
+      "id": 645,
+      "name": "Chris",
+      "character": 6
+    }
+  ]
 }

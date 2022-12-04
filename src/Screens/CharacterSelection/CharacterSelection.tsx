@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { PlayerSprite } from "../../Components/PlayerSprite/PlayerSprite";
+import { getCurrentPlayerId } from "../../functions/handleCurrentPlayerId";
 import { ROUTES } from "../../routes";
 import {
   useGetPlayerQuery,
@@ -9,11 +10,14 @@ import { BottomContent } from "../../UiComponents/BottomContent/BottomContent";
 import { Bottomer } from "../../UiComponents/FlexBoxes/Bottomer/Bottomer";
 import { Center } from "../../UiComponents/FlexBoxes/Center/Center";
 import { TextBox } from "../../UiComponents/TextBox/TextBox";
+import { ErrorScreen } from "../ErrorScreen/ErrorScreen";
+import { LoadingScreen } from "../LoadingScreen/LoadingScreen";
 import { oakSpriteContainer } from "./characterSelectionStyle";
 
 export const CharacterSelection = (): JSX.Element => {
+  const currentId = getCurrentPlayerId() ?? -1;
   const navigate = useNavigate();
-  const { data } = useGetPlayerQuery();
+  const { data, isLoading } = useGetPlayerQuery(currentId);
   const [updatePlayer] = useUpdatePlayerMutation();
 
   const saveCharacter = (character: number) => {
@@ -25,8 +29,17 @@ export const CharacterSelection = (): JSX.Element => {
       console.error("Current Player:", currentPlayer, "Character: ", character);
   };
 
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+
+  if (!data) {
+    return <ErrorScreen />;
+  }
+
   return (
     <BottomContent
+      justifyContent="flex-end"
       bottomContent={<TextBox text={"And what do you look like?"} />}
     >
       <Bottomer>

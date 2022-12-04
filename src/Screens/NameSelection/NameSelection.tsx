@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { setCurrentPlayerId } from "../../functions/handleCurrentPlayerId";
 import { ROUTES } from "../../routes";
-import { useUpdatePlayerMutation } from "../../services/player";
+import { useAddPlayerMutation } from "../../services/player";
 import { BottomContent } from "../../UiComponents/BottomContent/BottomContent";
 import { Bottomer } from "../../UiComponents/FlexBoxes/Bottomer/Bottomer";
 import { Center } from "../../UiComponents/FlexBoxes/Center/Center";
@@ -11,11 +12,13 @@ export const NameSelection = (): JSX.Element => {
   const navigate = useNavigate();
   const [name, setName] = useState<string>("");
 
-  const [updatePlayer] = useUpdatePlayerMutation();
+  const [addPlayer] = useAddPlayerMutation();
 
   const saveName = () => {
-    updatePlayer({
-      id: Math.floor(Math.random() * 1000),
+    const id = Math.floor(Math.random() * 1000);
+    setCurrentPlayerId(id);
+    addPlayer({
+      id: id,
       name: name,
     });
     navigate(ROUTES.CHARACTERSELECTION);
@@ -23,6 +26,7 @@ export const NameSelection = (): JSX.Element => {
 
   return (
     <BottomContent
+      justifyContent="flex-end"
       bottomContent={<TextBox text={"Now, what was your name again?"} />}
     >
       <Bottomer>
