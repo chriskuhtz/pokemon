@@ -14,7 +14,6 @@ export const playerApi = createApi({
       query: (id) => `players/${id}`,
       providesTags: ["Player"],
     }),
-
     updatePlayer: builder.mutation<string, Player>({
       query: (player: Player) => ({
         url: `players/${player.id}`,

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { generateId } from "../../functions/generateId";
 import { setCurrentPlayerId } from "../../functions/handleCurrentPlayerId";
 import { ROUTES } from "../../routes";
 import { useAddPlayerMutation } from "../../services/player";
@@ -15,11 +16,13 @@ export const NameSelection = (): JSX.Element => {
   const [addPlayer] = useAddPlayerMutation();
 
   const saveName = () => {
-    const id = Math.floor(Math.random() * 1000);
+    const id = generateId();
     setCurrentPlayerId(id);
     addPlayer({
       id: id,
       name: name,
+      team: [],
+      storage: [],
     });
     navigate(ROUTES.CHARACTERSELECTION);
   };
