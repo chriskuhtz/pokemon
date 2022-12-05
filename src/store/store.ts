@@ -1,19 +1,19 @@
 import { configureStore, ConfigureStoreOptions } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { playerApi } from "../services/player";
-import { pokemonApi } from "../services/pokemon";
+import { pokemonMetaDataApi } from "../services/pokemonMetaData";
 
 export const createStore = (
   options?: ConfigureStoreOptions["preloadedState"] | undefined
 ) =>
   configureStore({
     reducer: {
-      [pokemonApi.reducerPath]: pokemonApi.reducer,
+      [pokemonMetaDataApi.reducerPath]: pokemonMetaDataApi.reducer,
       [playerApi.reducerPath]: playerApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat([
-        pokemonApi.middleware,
+        pokemonMetaDataApi.middleware,
         playerApi.middleware,
       ]),
   });

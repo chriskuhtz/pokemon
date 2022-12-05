@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { PlayerSprite } from "../../Components/PlayerSprite/PlayerSprite";
 import { getCurrentPlayerId } from "../../functions/handleCurrentPlayerId";
@@ -15,7 +16,7 @@ import { LoadingScreen } from "../LoadingScreen/LoadingScreen";
 import { oakSpriteContainer } from "./characterSelectionStyle";
 
 export const CharacterSelection = (): JSX.Element => {
-  const currentId = getCurrentPlayerId() ?? -1;
+  const currentId = useMemo(() => getCurrentPlayerId() ?? -1, []);
   const navigate = useNavigate();
   const { data, isLoading } = useGetPlayerQuery(currentId);
   const [updatePlayer] = useUpdatePlayerMutation();
@@ -56,7 +57,11 @@ export const CharacterSelection = (): JSX.Element => {
                 </div>
                 <div>
                   {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
-                    <PlayerSprite id={i} onClick={() => saveCharacter(i)} />
+                    <PlayerSprite
+                      id={i}
+                      onClick={() => saveCharacter(i)}
+                      key={i}
+                    />
                   ))}
                 </div>
               </div>
