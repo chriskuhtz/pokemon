@@ -1,4 +1,19 @@
 {
-  "players": [],
-  "pokemon": []
+  "players": [
+    {
+      "id": 56328886098,
+      "name": "iz",
+      "money": 3000,
+      "character": 2
+    }
+  ],
+  "pokemon": [
+    {
+      "id": 41609072766,
+      "name": "bulbasaur",
+      "frontSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+      "ownerId": 56328886098,
+      "nickName": "bear"
+    }
+  ]
 }

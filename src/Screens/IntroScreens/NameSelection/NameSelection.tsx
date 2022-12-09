@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { generateId } from "../../functions/generateId";
-import { setCurrentPlayerId } from "../../functions/handleCurrentPlayerId";
-import { ROUTES } from "../../routes";
-import { useAddPlayerMutation } from "../../services/player";
-import { BottomContent } from "../../UiComponents/BottomContent/BottomContent";
-import { Bottomer } from "../../UiComponents/FlexBoxes/Bottomer/Bottomer";
-import { Center } from "../../UiComponents/FlexBoxes/Center/Center";
-import { TextBox } from "../../UiComponents/TextBox/TextBox";
+import { generateId } from "../../../functions/generateId";
+import { setCurrentPlayerId } from "../../../functions/handleCurrentPlayerId";
+import { ROUTES } from "../../../routes";
+import { useAddPlayerMutation } from "../../../services/internal";
+import { BottomContent } from "../../../UiComponents/BottomContent/BottomContent";
+import { Bottomer } from "../../../UiComponents/FlexBoxes/Bottomer/Bottomer";
+import { Center } from "../../../UiComponents/FlexBoxes/Center/Center";
+import { TextBox } from "../../../UiComponents/TextBox/TextBox";
 
 export const NameSelection = (): JSX.Element => {
   const navigate = useNavigate();
@@ -21,8 +21,7 @@ export const NameSelection = (): JSX.Element => {
     addPlayer({
       id: id,
       name: name,
-      team: [],
-      storage: [],
+      money: 0,
     });
     navigate(ROUTES.CHARACTERSELECTION);
   };
