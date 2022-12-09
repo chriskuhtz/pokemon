@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import { TrainerCard } from "../../Components/TrainerCard/TrainerCard";
-import { setCurrentPlayerId } from "../../functions/handleCurrentPlayerId";
-import { ROUTES } from "../../routes";
-import { useGetPlayersQuery } from "../../services/player";
-import { BottomContent } from "../../UiComponents/BottomContent/BottomContent";
-import { InvisibleButton } from "../../UiComponents/InvisibleButton/InvisibleButton";
-import { ErrorScreen } from "../ErrorScreen/ErrorScreen";
-import { LoadingScreen } from "../LoadingScreen/LoadingScreen";
+import { TrainerCard } from "../../../Components/TrainerCard/TrainerCard";
+import { setCurrentPlayerId } from "../../../functions/handleCurrentPlayerId";
+import { ROUTES } from "../../../routes";
+import { useGetPlayersQuery } from "../../../services/internal";
+import { BottomContent } from "../../../UiComponents/BottomContent/BottomContent";
+import { InvisibleButton } from "../../../UiComponents/InvisibleButton/InvisibleButton";
+import { ErrorScreen } from "../../ErrorScreen/ErrorScreen";
+import { LoadingScreen } from "../../LoadingScreen/LoadingScreen";
 import { newGameButton, saveFilesBox } from "./saveFileSelectionStyle";
 
 export const SaveFileSelection = () => {
@@ -29,8 +29,6 @@ export const SaveFileSelection = () => {
     return <ErrorScreen />;
   }
 
-  console.log(players);
-
   return (
     <BottomContent
       justifyContent="space-between"
@@ -42,7 +40,7 @@ export const SaveFileSelection = () => {
     >
       <div style={saveFilesBox}>
         {players.map((p) => (
-          <InvisibleButton disabled onClick={() => loadGame(p.id)}>
+          <InvisibleButton disabled onClick={() => loadGame(p.id)} key={p.id}>
             <TrainerCard trainer={p} />
           </InvisibleButton>
         ))}

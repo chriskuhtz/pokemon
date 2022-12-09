@@ -1,18 +1,18 @@
 import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { PlayerSprite } from "../../Components/PlayerSprite/PlayerSprite";
-import { getCurrentPlayerId } from "../../functions/handleCurrentPlayerId";
-import { ROUTES } from "../../routes";
+import { PlayerSprite } from "../../../Components/PlayerSprite/PlayerSprite";
+import { getCurrentPlayerId } from "../../../functions/handleCurrentPlayerId";
+import { ROUTES } from "../../../routes";
 import {
   useGetPlayerQuery,
   useUpdatePlayerMutation,
-} from "../../services/player";
-import { BottomContent } from "../../UiComponents/BottomContent/BottomContent";
-import { Bottomer } from "../../UiComponents/FlexBoxes/Bottomer/Bottomer";
-import { Center } from "../../UiComponents/FlexBoxes/Center/Center";
-import { TextBox } from "../../UiComponents/TextBox/TextBox";
-import { ErrorScreen } from "../ErrorScreen/ErrorScreen";
-import { LoadingScreen } from "../LoadingScreen/LoadingScreen";
+} from "../../../services/internal";
+import { BottomContent } from "../../../UiComponents/BottomContent/BottomContent";
+import { Bottomer } from "../../../UiComponents/FlexBoxes/Bottomer/Bottomer";
+import { Center } from "../../../UiComponents/FlexBoxes/Center/Center";
+import { TextBox } from "../../../UiComponents/TextBox/TextBox";
+import { ErrorScreen } from "../../ErrorScreen/ErrorScreen";
+import { LoadingScreen } from "../../LoadingScreen/LoadingScreen";
 import { oakSpriteContainer } from "./characterSelectionStyle";
 
 export const CharacterSelection = (): JSX.Element => {

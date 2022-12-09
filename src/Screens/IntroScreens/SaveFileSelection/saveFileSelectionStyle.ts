@@ -1,7 +1,7 @@
 import {
   flexWrap,
   thickBorder,
-} from "../../UiComponents/GlobalStyles/globalStyles";
+} from "../../../UiComponents/GlobalStyles/globalStyles";
 
 export const newGameButton = {
   border: thickBorder,

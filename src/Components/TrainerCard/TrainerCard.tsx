@@ -14,6 +14,12 @@ export const TrainerCard = ({ trainer }: { trainer: Player }) => {
           <strong>NAME: </strong>
           {trainer.name}
         </p>
+        {trainer.money > 0 && (
+          <p>
+            <strong>MONEY: </strong>
+            {trainer.money}
+          </p>
+        )}
       </div>
 
       {trainer.character && (
