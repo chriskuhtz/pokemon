@@ -36,7 +36,7 @@ export const CharacterOverview = () => {
       }
     >
       <Bottomer>
-        <Center>
+        <Center horizontal>
           <div style={characterOverviewBox}>
             <img
               alt="oak"

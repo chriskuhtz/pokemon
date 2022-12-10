@@ -35,7 +35,7 @@ export const CharacterSelection = (): JSX.Element => {
   }
 
   if (!data) {
-    return <ErrorScreen />;
+    return <ErrorScreen text={"/player call failed"} />;
   }
 
   return (
@@ -44,9 +44,9 @@ export const CharacterSelection = (): JSX.Element => {
       bottomContent={<TextBox text={"And what do you look like?"} />}
     >
       <Bottomer>
-        <Center>
+        <Center horizontal>
           <div>
-            <Center>
+            <Center horizontal>
               <div>
                 <div style={oakSpriteContainer}>
                   <img

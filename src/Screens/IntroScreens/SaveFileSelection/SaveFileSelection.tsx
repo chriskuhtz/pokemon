@@ -15,6 +15,7 @@ export const SaveFileSelection = () => {
 
   const loadGame = (id: number) => {
     setCurrentPlayerId(id);
+    navigate(ROUTES.PLAYERMENU);
   };
 
   const startNewGame = () => {
@@ -26,7 +27,12 @@ export const SaveFileSelection = () => {
   }
 
   if (!players) {
-    return <ErrorScreen />;
+    return (
+      <ErrorScreen
+        text="/players call failed, turn on the json server
+    "
+      />
+    );
   }
 
   return (
@@ -40,7 +46,7 @@ export const SaveFileSelection = () => {
     >
       <div style={saveFilesBox}>
         {players.map((p) => (
-          <InvisibleButton disabled onClick={() => loadGame(p.id)} key={p.id}>
+          <InvisibleButton onClick={() => loadGame(p.id)} key={p.id}>
             <TrainerCard trainer={p} />
           </InvisibleButton>
         ))}

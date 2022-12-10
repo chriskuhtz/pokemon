@@ -20,15 +20,20 @@ import { Center } from "../../../UiComponents/FlexBoxes/Center/Center";
 import { InvisibleButton } from "../../../UiComponents/InvisibleButton/InvisibleButton";
 import { TextBox } from "../../../UiComponents/TextBox/TextBox";
 import { ErrorScreen } from "../../ErrorScreen/ErrorScreen";
+import { LoadingScreen } from "../../LoadingScreen/LoadingScreen";
 import { oakSpriteContainer } from "../CharacterSelection/characterSelectionStyle";
 
 export const StarterSelection = (): JSX.Element => {
   const navigate = useNavigate();
   const currentId = useMemo(() => getCurrentPlayerId() ?? -1, []);
-  const { data: bulbasaur } = useGetPokemonMetaDataByNameQuery("bulbasaur");
-  const { data: squirtle } = useGetPokemonMetaDataByNameQuery("squirtle");
-  const { data: charmander } = useGetPokemonMetaDataByNameQuery("charmander");
-  const { data: player } = useGetPlayerQuery(currentId);
+  const { data: firstMon, isLoading: isFirstMonLoading } =
+    useGetPokemonMetaDataByNameQuery("teddiursa");
+  const { data: secondMon, isLoading: isSecondMonLoading } =
+    useGetPokemonMetaDataByNameQuery("pancham");
+  const { data: thirdMon, isLoading: isThirdMonLoading } =
+    useGetPokemonMetaDataByNameQuery("cubchoo");
+  const { data: player, isLoading: isPlayerLoading } =
+    useGetPlayerQuery(currentId);
   const [updatePlayer] = useUpdatePlayerMutation();
   const [addPokemon] = useAddPokemonMutation();
 
@@ -61,7 +66,17 @@ export const StarterSelection = (): JSX.Element => {
     navigate(ROUTES.SENDOFF);
   };
 
-  if (!charmander || !bulbasaur || !squirtle || currentId === -1 || !player) {
+  const isLoading =
+    isFirstMonLoading ||
+    isSecondMonLoading ||
+    isThirdMonLoading ||
+    isPlayerLoading;
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+
+  if (!thirdMon || !firstMon || !secondMon || currentId === -1 || !player) {
     return <ErrorScreen />;
   }
 
@@ -71,7 +86,7 @@ export const StarterSelection = (): JSX.Element => {
       bottomContent={<TextBox text={paragraphs[index]} onClick={handleClick} />}
     >
       <Bottomer>
-        <Center>
+        <Center horizontal>
           <div>
             <div style={oakSpriteContainer}>
               <img
@@ -81,7 +96,7 @@ export const StarterSelection = (): JSX.Element => {
               />
             </div>
             {index === max &&
-              [bulbasaur, squirtle, charmander].map((pokemon) => (
+              [firstMon, secondMon, thirdMon].map((pokemon) => (
                 <InvisibleButton
                   onClick={() => handlePokemonClick(pokemon, player)}
                   key={pokemon.name}

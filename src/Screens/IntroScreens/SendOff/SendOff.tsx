@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getCurrentPlayerId } from "../../../functions/handleCurrentPlayerId";
 import { useMultiTextBox } from "../../../hooks/useMultiTextBox/useMultiTextBox";
+import { ROUTES } from "../../../routes";
 import {
   useGetPlayerQuery,
   useGetPokemonByOwnerIdQuery,
@@ -14,6 +16,7 @@ import { TextBox } from "../../../UiComponents/TextBox/TextBox";
 import { ErrorScreen } from "../../ErrorScreen/ErrorScreen";
 
 export const SendOff = () => {
+  const navigate = useNavigate();
   const currentId = useMemo(() => getCurrentPlayerId(), []);
   const { data: player } = useGetPlayerQuery(currentId);
   const { data: team } = useGetPokemonByOwnerIdQuery(currentId);
@@ -34,6 +37,7 @@ export const SendOff = () => {
 
   const onLastClick = () => {
     player && updatePlayer({ ...player, money: 3000 });
+    navigate(ROUTES.PLAYERMENU);
   };
   const { index, handleClick } = useMultiTextBox(paragraphs, () =>
     onLastClick()
@@ -58,9 +62,9 @@ export const SendOff = () => {
       }
     >
       <Bottomer>
-        <Center>
+        <Center horizontal>
           <div>
-            <Center>
+            <Center horizontal>
               <img
                 alt="oak"
                 src={process.env.PUBLIC_URL + "/assets/oak.jpeg"}

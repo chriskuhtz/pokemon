@@ -13,7 +13,7 @@ export const Intro = (): JSX.Element => {
       bottomContent={<TextBox text={paragraphs[index]} onClick={handleClick} />}
     >
       <Bottomer>
-        <Center>
+        <Center horizontal>
           <>
             <img
               alt="pikachu"

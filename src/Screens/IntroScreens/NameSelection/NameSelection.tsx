@@ -21,6 +21,7 @@ export const NameSelection = (): JSX.Element => {
     addPlayer({
       id: id,
       name: name,
+      character: 0,
       money: 0,
     });
     navigate(ROUTES.CHARACTERSELECTION);
@@ -32,9 +33,9 @@ export const NameSelection = (): JSX.Element => {
       bottomContent={<TextBox text={"Now, what was your name again?"} />}
     >
       <Bottomer>
-        <Center>
+        <Center horizontal>
           <div>
-            <Center>
+            <Center horizontal>
               <img
                 alt="oak"
                 src={process.env.PUBLIC_URL + "/assets/oak.jpeg"}
