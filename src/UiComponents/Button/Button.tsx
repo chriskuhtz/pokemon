@@ -6,14 +6,22 @@ export const Button = ({
   children,
   disabled,
   onClick,
+  fullWidth,
 }: {
   children: ReactNode;
   disabled?: boolean;
   onClick: () => void;
+  fullWidth?: boolean;
 }): JSX.Element => {
   return (
-    <InvisibleButton onClick={onClick} disabled={disabled}>
-      <Pill border={"thick"}>{children}</Pill>
-    </InvisibleButton>
+    <Pill border={"thick"}>
+      <InvisibleButton
+        onClick={onClick}
+        disabled={disabled}
+        fullWidth={fullWidth}
+      >
+        {children}{" "}
+      </InvisibleButton>
+    </Pill>
   );
 };

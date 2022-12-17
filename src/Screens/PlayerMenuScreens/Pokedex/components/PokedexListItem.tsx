@@ -15,7 +15,17 @@ export const PokedexListItem = ({
   }
   return (
     <div style={{ marginBottom: ".5rem" }}>
-      <Pill border={owned ? "thick" : "thin"}>{data?.name}</Pill>
+      <Pill
+        border={owned ? "thick" : "thin"}
+        onClick={() =>
+          window.open(
+            `https://pokemonmodules-pokedex.netlify.app/${id}`,
+            "_blank"
+          )
+        }
+      >
+        {data?.name}
+      </Pill>
     </div>
   );
 };

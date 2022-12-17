@@ -8,6 +8,7 @@ import { SendOff } from "./Screens/IntroScreens/SendOff/SendOff";
 import { StarterSelection } from "./Screens/IntroScreens/StarterSelection/StarterSelection";
 import { PlayerMenu } from "./Screens/PlayerMenuScreens/PlayerMenu/PlayerMenu";
 import { Pokedex } from "./Screens/PlayerMenuScreens/Pokedex/Pokedex";
+import { SinglePokemonScreen } from "./Screens/PlayerMenuScreens/SinglePokemon/SinglePokemonScreen";
 import { TrainerOverview } from "./Screens/PlayerMenuScreens/TrainerOverview/TrainerOverview";
 
 export enum ROUTES {
@@ -23,6 +24,7 @@ export enum ROUTES {
   PLAYERMENU = "/menu/player-menu",
   TRAINEROVERVIEW = "/menu/trainer-overview",
   POKEDEX = "/menu/pokedex",
+  SINGLEPOKEMON = "/menu/pokemon",
 }
 
 export const createdRoutes = createRoutesFromElements([
@@ -38,4 +40,5 @@ export const createdRoutes = createRoutesFromElements([
   <Route path={ROUTES.PLAYERMENU} element={<PlayerMenu />} />,
   <Route path={ROUTES.TRAINEROVERVIEW} element={<TrainerOverview />} />,
   <Route path={ROUTES.POKEDEX} element={<Pokedex />} />,
+  <Route path={ROUTES.SINGLEPOKEMON} element={<SinglePokemonScreen />} />,
 ]);

@@ -1,19 +1,61 @@
 {
   "players": [
     {
-      "id": 56328886098,
-      "name": "iz",
-      "money": 3000,
-      "character": 2
+      "id": 60049394519,
+      "name": "brs",
+      "character": 0,
+      "money": 3000
     }
   ],
-  "pokemon": [
+  "teams": [
     {
-      "id": 41609072766,
-      "name": "bulbasaur",
-      "frontSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-      "ownerId": 56328886098,
-      "nickName": "bear"
+      "id": 60049394519,
+      "pokemon": [
+        {
+          "id": 92867657565,
+          "dexId": 674,
+          "ownerId": 60049394519,
+          "nickName": "jbi"
+        },
+        {
+          "id": 92867653565,
+          "dexId": 3,
+          "ownerId": 60049394519,
+          "nickName": "jbi"
+        },
+        {
+          "id": 92867657765,
+          "dexId": 150,
+          "ownerId": 60049394519,
+          "nickName": "jbi"
+        },
+        {
+          "id": 92863657565,
+          "dexId": 301,
+          "ownerId": 60049394519,
+          "nickName": "jbi"
+        },
+
+        {
+          "id": 92847657565,
+          "dexId": 89,
+          "ownerId": 60049394519,
+          "nickName": "jbi"
+        }
+      ]
+    }
+  ],
+  "pcstorages": [
+    {
+      "id": 60049394519,
+      "pokemon": []
+    }
+  ],
+  "pokedexes": [
+    {
+      "id": 60049394519,
+      "seen": [674],
+      "owned": [674]
     }
   ]
 }

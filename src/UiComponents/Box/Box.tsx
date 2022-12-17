@@ -4,9 +4,11 @@ import { thickBorder, thinBorder } from "../GlobalStyles/globalStyles";
 export const Box = ({
   children,
   border,
+  onClick,
 }: {
   children: ReactNode;
   border?: "thick" | "thin";
+  onClick?: () => void;
 }): JSX.Element => {
   const boxStyle = (border?: "thick" | "thin") => {
     const correctBorder =
@@ -24,5 +26,15 @@ export const Box = ({
       alignItems: "flex-start",
     };
   };
-  return <div style={boxStyle(border)}>{children}</div>;
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    }
+  };
+  return (
+    <div onClick={handleClick} style={boxStyle(border)}>
+      {children}
+    </div>
+  );
 };
