@@ -3,4 +3,5 @@ export interface PokemonQueryResponse {
   sprites: {
     front_default: string;
   };
+  id: number;
 }

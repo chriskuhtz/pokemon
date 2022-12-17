@@ -10,7 +10,7 @@ import {
 import { BottomContent } from "../../../UiComponents/BottomContent/BottomContent";
 import { Bottomer } from "../../../UiComponents/FlexBoxes/Bottomer/Bottomer";
 import { Center } from "../../../UiComponents/FlexBoxes/Center/Center";
-import { TextBox } from "../../../UiComponents/TextBox/TextBox";
+import { Pill } from "../../../UiComponents/Pill/Pill";
 import { ErrorScreen } from "../../ErrorScreen/ErrorScreen";
 import { LoadingScreen } from "../../LoadingScreen/LoadingScreen";
 import { oakSpriteContainer } from "./characterSelectionStyle";
@@ -23,7 +23,7 @@ export const CharacterSelection = (): JSX.Element => {
 
   const saveCharacter = (character: number) => {
     const currentPlayer = data;
-    if (currentPlayer && character) {
+    if (currentPlayer && character !== undefined) {
       updatePlayer({ ...currentPlayer, character: character });
       navigate(ROUTES.CHARACTEROVERVIEW);
     } else
@@ -41,7 +41,7 @@ export const CharacterSelection = (): JSX.Element => {
   return (
     <BottomContent
       justifyContent="flex-end"
-      bottomContent={<TextBox text={"And what do you look like?"} />}
+      bottomContent={<Pill>"And what do you look like?"</Pill>}
     >
       <Bottomer>
         <Center horizontal>

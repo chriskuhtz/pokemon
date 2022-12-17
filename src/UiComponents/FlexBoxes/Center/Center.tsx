@@ -1,4 +1,4 @@
-import { ReactElement, useMemo } from "react";
+import { ReactNode, useMemo } from "react";
 import { centerStyle } from "./centerStyle";
 
 export const Center = ({
@@ -6,7 +6,7 @@ export const Center = ({
   horizontal,
   vertical,
 }: {
-  children: ReactElement;
+  children: ReactNode;
   horizontal?: boolean;
   vertical?: boolean;
 }) => {

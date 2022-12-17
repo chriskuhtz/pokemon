@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactNode } from "react";
 import {
   bottomContentStyle,
   mainContentStyle,
@@ -10,8 +10,8 @@ export const BottomContent = ({
   bottomContent,
   justifyContent,
 }: {
-  children: ReactElement;
-  bottomContent: ReactElement;
+  children: ReactNode;
+  bottomContent: ReactNode;
   justifyContent: "flex-end" | "space-between";
 }) => {
   const outerBox = outerBoxStyle(justifyContent);

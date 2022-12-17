@@ -1,16 +1,17 @@
-import { invisibleButton } from "./invisibleButtonStyle";
+import { ReactNode } from "react";
+import { invisibleButtonStyle } from "./invisibleButtonStyle";
 
 export const InvisibleButton = ({
   children,
   onClick,
   disabled,
 }: {
-  children: JSX.Element;
+  children: ReactNode;
   onClick: () => void;
   disabled?: boolean;
 }): JSX.Element => {
   return (
-    <button disabled={disabled} style={invisibleButton} onClick={onClick}>
+    <button disabled={disabled} style={invisibleButtonStyle} onClick={onClick}>
       {children}
     </button>
   );

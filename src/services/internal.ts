@@ -1,12 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { PCStorage } from "../Interfaces/PCStorage";
 import { Player } from "../Interfaces/Player";
-import { Pokemon } from "../Interfaces/Pokemon";
+import { Pokedex } from "../Interfaces/Pokedex";
+import { Team } from "../Interfaces/Team";
 
 export const internalApi = createApi({
   reducerPath: "internalApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/" }),
-  tagTypes: ["Player", "Players", "Pokemon"],
+  tagTypes: ["Player", "Players", "Team", "Teams", "PCStorage", "Pokedex"],
   endpoints: (builder) => ({
+    //PLAYER
     getPlayers: builder.query<Player[], void>({
       query: () => `players`,
       providesTags: ["Players"],
@@ -15,7 +18,7 @@ export const internalApi = createApi({
       query: (id) => `players/${id}`,
       providesTags: ["Player"],
     }),
-    updatePlayer: builder.mutation<string, Player>({
+    updatePlayer: builder.mutation<void, Player>({
       query: (player: Player) => ({
         url: `players/${player.id}`,
         method: "PUT",
@@ -23,7 +26,7 @@ export const internalApi = createApi({
       }),
       invalidatesTags: ["Player"],
     }),
-    addPlayer: builder.mutation<string, Player>({
+    addPlayer: builder.mutation<void, Player>({
       query: (player: Player) => ({
         url: `players`,
         method: "POST",
@@ -31,27 +34,64 @@ export const internalApi = createApi({
       }),
       invalidatesTags: ["Players"],
     }),
-    getPokemonById: builder.query<Pokemon, number>({
-      query: (id) => `pokemon/${id}`,
-      providesTags: ["Pokemon"],
+    //TEAM
+    getTeam: builder.query<Team, number>({
+      query: (id) => `teams/${id}`,
+      providesTags: ["Team"],
     }),
-    getPokemonByOwnerId: builder.query<Pokemon[], number>({
-      query: (id) => `pokemon/?ownerId=${id}`,
-      providesTags: ["Pokemon"],
-    }),
-    updatePokemon: builder.mutation<void, Pokemon>({
-      query: (pokemon: Pokemon) => ({
-        url: `pokemon/${pokemon.id}`,
+    updateTeam: builder.mutation<void, Team>({
+      query: (team: Team) => ({
+        url: `teams/${team.id}`,
         method: "PUT",
-        body: pokemon,
+        body: team,
       }),
-      invalidatesTags: ["Pokemon"],
+      invalidatesTags: ["Team"],
     }),
-    addPokemon: builder.mutation<void, Pokemon>({
-      query: (pokemon: Pokemon) => ({
-        url: `pokemon`,
+    createNewTeam: builder.mutation<void, Team>({
+      query: (team: Team) => ({
+        url: `teams`,
         method: "POST",
-        body: pokemon,
+        body: team,
+      }),
+    }),
+    //STORAGE
+    getPCStorage: builder.query<PCStorage, number>({
+      query: (id) => `pcstorages/${id}`,
+      providesTags: ["Team"],
+    }),
+    updatePCStorage: builder.mutation<void, PCStorage>({
+      query: (pcStorage: PCStorage) => ({
+        url: `pcstorages/${pcStorage.id}`,
+        method: "PUT",
+        body: pcStorage,
+      }),
+      invalidatesTags: ["PCStorage"],
+    }),
+    createNewPCStorage: builder.mutation<void, PCStorage>({
+      query: (pcStorage: PCStorage) => ({
+        url: `pcstorages`,
+        method: "POST",
+        body: pcStorage,
+      }),
+    }),
+    //POKEDEX
+    getPokedex: builder.query<Pokedex, number>({
+      query: (id) => `pokedexes/${id}`,
+      providesTags: ["Pokedex"],
+    }),
+    updatePokedex: builder.mutation<void, Pokedex>({
+      query: (pokedex: Pokedex) => ({
+        url: `pokedexes/${pokedex.id}`,
+        method: "PUT",
+        body: pokedex,
+      }),
+      invalidatesTags: ["Pokedex"],
+    }),
+    createNewPokedex: builder.mutation<void, Pokedex>({
+      query: (pokedex: Pokedex) => ({
+        url: `pokedexes`,
+        method: "POST",
+        body: pokedex,
       }),
     }),
   }),
@@ -62,8 +102,13 @@ export const {
   useGetPlayersQuery,
   useUpdatePlayerMutation,
   useAddPlayerMutation,
-  useAddPokemonMutation,
-  useGetPokemonByIdQuery,
-  useGetPokemonByOwnerIdQuery,
-  useUpdatePokemonMutation,
+  useCreateNewPokedexMutation,
+  useCreateNewTeamMutation,
+  useGetPokedexQuery,
+  useGetTeamQuery,
+  useUpdatePokedexMutation,
+  useUpdateTeamMutation,
+  useCreateNewPCStorageMutation,
+  useGetPCStorageQuery,
+  useUpdatePCStorageMutation,
 } = internalApi;

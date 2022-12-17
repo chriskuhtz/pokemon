@@ -10,9 +10,15 @@ export const pokemonMetaDataApi = createApi({
     getPokemonMetaDataByName: builder.query<PokemonQueryResponse, string>({
       query: (name) => `pokemon/${name}`,
     }),
+    getPokemonMetaDataById: builder.query<PokemonQueryResponse, number>({
+      query: (id) => `pokemon/${id}`,
+    }),
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetPokemonMetaDataByNameQuery } = pokemonMetaDataApi;
+export const {
+  useGetPokemonMetaDataByNameQuery,
+  useGetPokemonMetaDataByIdQuery,
+} = pokemonMetaDataApi;

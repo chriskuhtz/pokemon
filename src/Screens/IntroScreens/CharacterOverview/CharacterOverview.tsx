@@ -7,7 +7,7 @@ import { useGetPlayerQuery } from "../../../services/internal";
 import { BottomContent } from "../../../UiComponents/BottomContent/BottomContent";
 import { Bottomer } from "../../../UiComponents/FlexBoxes/Bottomer/Bottomer";
 import { Center } from "../../../UiComponents/FlexBoxes/Center/Center";
-import { TextBox } from "../../../UiComponents/TextBox/TextBox";
+import { Pill } from "../../../UiComponents/Pill/Pill";
 import { ErrorScreen } from "../../ErrorScreen/ErrorScreen";
 import { LoadingScreen } from "../../LoadingScreen/LoadingScreen";
 import { characterOverviewBox } from "./characterOverviewStyle";
@@ -29,10 +29,9 @@ export const CharacterOverview = () => {
     <BottomContent
       justifyContent="flex-end"
       bottomContent={
-        <TextBox
-          text={`I see, so you are ${data.name}.`}
-          onClick={() => navigate(ROUTES.STARTERSELECTION)}
-        />
+        <Pill onClick={() => navigate(ROUTES.STARTERSELECTION)}>
+          I see, so you are {data.name}.
+        </Pill>
       }
     >
       <Bottomer>
