@@ -22,7 +22,7 @@ export const TrainerCard = ({ trainer }: { trainer: Player }) => {
         )}
       </div>
 
-      {trainer.character && (
+      {trainer.character !== undefined && (
         <div style={trainerImageStyle}>
           <PlayerSprite id={trainer.character} />
         </div>

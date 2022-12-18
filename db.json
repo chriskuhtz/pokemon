@@ -1,19 +1,110 @@
 {
   "players": [
     {
-      "id": 56328886098,
-      "name": "iz",
-      "money": 3000,
-      "character": 2
+      "id": 47452098204,
+      "name": "bb",
+      "character": 1,
+      "money": 3000
+    },
+    {
+      "id": 58807199347,
+      "name": "jloinl",
+      "character": 6,
+      "money": 3000
     }
   ],
-  "pokemon": [
+  "teams": [
     {
-      "id": 41609072766,
-      "name": "bulbasaur",
-      "frontSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-      "ownerId": 56328886098,
-      "nickName": "bear"
+      "id": 47452098204,
+      "pokemon": [
+        {
+          "id": 87137732990,
+          "dexId": 613,
+          "ownerId": 47452098204,
+          "nickName": "ojj"
+        }
+      ]
+    },
+    {
+      "id": 58807199347,
+      "pokemon": [
+        {
+          "id": 40761040193,
+          "dexId": 674,
+          "ownerId": 58807199347,
+          "nickName": "jnlk"
+        }
+      ]
+    }
+  ],
+  "pcstorages": [
+    {
+      "id": 47452098204,
+      "pokemon": []
+    },
+    {
+      "id": 58807199347,
+      "pokemon": []
+    }
+  ],
+  "pokedexes": [
+    {
+      "id": 47452098204,
+      "seen": [12, 44, 456, 613],
+      "owned": [613]
+    },
+    {
+      "id": 58807199347,
+      "seen": [12, 44, 456, 613, 674],
+      "owned": [12, 674]
+    }
+  ],
+  "bags": [
+    {
+      "id": 47452098204,
+      "items": [
+        {
+          "item": {
+            "name": "Potion"
+          },
+          "amount": 5
+        },
+        {
+          "item": {
+            "name": "Antidote"
+          },
+          "amount": 3
+        },
+        {
+          "item": {
+            "name": "Poke-ball"
+          },
+          "amount": 5
+        }
+      ]
+    },
+    {
+      "id": 58807199347,
+      "items": [
+        {
+          "item": {
+            "name": "Potion"
+          },
+          "amount": 5
+        },
+        {
+          "item": {
+            "name": "Antidote"
+          },
+          "amount": 3
+        },
+        {
+          "item": {
+            "name": "Poke-ball"
+          },
+          "amount": 5
+        }
+      ]
     }
   ]
 }

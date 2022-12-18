@@ -1,3 +1,3 @@
-export const ErrorScreen = () => {
-  return <div>ERROR ERROR ERROR</div>;
+export const ErrorScreen = ({ text }: { text?: string }) => {
+  return <div>{text ?? "ERROR ERROR ERROR"}</div>;
 };

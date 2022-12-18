@@ -1,7 +1,6 @@
 export interface Pokemon {
-  name: string;
-  frontSprite: string;
   id: number;
+  dexId: number;
   ownerId: number;
   nickName?: string;
 }

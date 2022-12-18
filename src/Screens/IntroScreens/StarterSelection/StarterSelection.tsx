@@ -1,36 +1,42 @@
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { generateId } from "../../../functions/generateId";
 import { getCurrentPlayerId } from "../../../functions/handleCurrentPlayerId";
 import { useMultiTextBox } from "../../../hooks/useMultiTextBox/useMultiTextBox";
+import { useSortAndUpdatePokedex } from "../../../hooks/useSortAndUpdatePokedex/useSortAndUpdatePokedex";
 import { Player } from "../../../Interfaces/Player";
 import { Pokemon } from "../../../Interfaces/Pokemon";
 import { PokemonQueryResponse } from "../../../Interfaces/PokemonQueryResponse";
 import { ROUTES } from "../../../routes";
 import {
-  useAddPokemonMutation,
   useGetPlayerQuery,
-  useUpdatePlayerMutation,
+  useUpdateTeamMutation,
 } from "../../../services/internal";
 
-import { useGetPokemonMetaDataByNameQuery } from "../../../services/pokemonMetaData";
+import { useGetPokemonMetaDataByNameQuery } from "../../../services/pokeApi";
 import { BottomContent } from "../../../UiComponents/BottomContent/BottomContent";
 import { Bottomer } from "../../../UiComponents/FlexBoxes/Bottomer/Bottomer";
 import { Center } from "../../../UiComponents/FlexBoxes/Center/Center";
 import { InvisibleButton } from "../../../UiComponents/InvisibleButton/InvisibleButton";
-import { TextBox } from "../../../UiComponents/TextBox/TextBox";
+import { Pill } from "../../../UiComponents/Pill/Pill";
 import { ErrorScreen } from "../../ErrorScreen/ErrorScreen";
+import { LoadingScreen } from "../../LoadingScreen/LoadingScreen";
 import { oakSpriteContainer } from "../CharacterSelection/characterSelectionStyle";
 
 export const StarterSelection = (): JSX.Element => {
   const navigate = useNavigate();
   const currentId = useMemo(() => getCurrentPlayerId() ?? -1, []);
-  const { data: bulbasaur } = useGetPokemonMetaDataByNameQuery("bulbasaur");
-  const { data: squirtle } = useGetPokemonMetaDataByNameQuery("squirtle");
-  const { data: charmander } = useGetPokemonMetaDataByNameQuery("charmander");
-  const { data: player } = useGetPlayerQuery(currentId);
-  const [updatePlayer] = useUpdatePlayerMutation();
-  const [addPokemon] = useAddPokemonMutation();
+  const { data: firstMon, isLoading: isFirstMonLoading } =
+    useGetPokemonMetaDataByNameQuery("teddiursa");
+  const { data: secondMon, isLoading: isSecondMonLoading } =
+    useGetPokemonMetaDataByNameQuery("pancham");
+  const { data: thirdMon, isLoading: isThirdMonLoading } =
+    useGetPokemonMetaDataByNameQuery("cubchoo");
+  const { data: player, isLoading: isPlayerLoading } =
+    useGetPlayerQuery(currentId);
+
+  const [updateTeam] = useUpdateTeamMutation();
+  const { sortAndUpdatePokedex } = useSortAndUpdatePokedex();
 
   const paragraphs = [
     "Now, the reason i called you here today.",
@@ -42,16 +48,19 @@ export const StarterSelection = (): JSX.Element => {
   const { index, handleClick } = useMultiTextBox(paragraphs);
   const max = paragraphs.length - 1;
 
-  const createTeam = (pokemon: PokemonQueryResponse, player: Player) => {
-    const firstTeamMember: Pokemon = {
-      id: generateId(),
-      name: pokemon.name,
-      frontSprite: pokemon.sprites.front_default,
-      ownerId: player.id,
-    };
-    updatePlayer({ ...player });
-    addPokemon(firstTeamMember);
-  };
+  const createTeam = useCallback(
+    (pokemon: PokemonQueryResponse, player: Player) => {
+      const firstTeamMember: Pokemon = {
+        id: generateId(),
+        dexId: pokemon.id,
+        ownerId: player.id,
+      };
+
+      updateTeam({ id: currentId, pokemon: [firstTeamMember] });
+      sortAndUpdatePokedex(pokemon.id, true);
+    },
+    [updateTeam, sortAndUpdatePokedex, currentId]
+  );
 
   const handlePokemonClick = (
     pokemon: PokemonQueryResponse,
@@ -61,17 +70,27 @@ export const StarterSelection = (): JSX.Element => {
     navigate(ROUTES.SENDOFF);
   };
 
-  if (!charmander || !bulbasaur || !squirtle || currentId === -1 || !player) {
+  const isLoading =
+    isFirstMonLoading ||
+    isSecondMonLoading ||
+    isThirdMonLoading ||
+    isPlayerLoading;
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+
+  if (!thirdMon || !firstMon || !secondMon || currentId === -1 || !player) {
     return <ErrorScreen />;
   }
 
   return (
     <BottomContent
       justifyContent="flex-end"
-      bottomContent={<TextBox text={paragraphs[index]} onClick={handleClick} />}
+      bottomContent={<Pill onClick={handleClick}>{paragraphs[index]}</Pill>}
     >
       <Bottomer>
-        <Center>
+        <Center horizontal>
           <div>
             <div style={oakSpriteContainer}>
               <img
@@ -81,7 +100,7 @@ export const StarterSelection = (): JSX.Element => {
               />
             </div>
             {index === max &&
-              [bulbasaur, squirtle, charmander].map((pokemon) => (
+              [firstMon, secondMon, thirdMon].map((pokemon) => (
                 <InvisibleButton
                   onClick={() => handlePokemonClick(pokemon, player)}
                   key={pokemon.name}

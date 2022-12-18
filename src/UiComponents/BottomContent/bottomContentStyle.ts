@@ -11,11 +11,13 @@ export const outerBoxStyle = (justifyContent: "flex-end" | "space-between") => {
 };
 
 export const bottomContentStyle = {
-  width: "100%",
+  width: "calc(100%-1rem)",
   display: "flex",
   justifyContent: "center",
+  padding: "0.5rem 0.5rem",
 };
 
 export const mainContentStyle = {
-  width: "100%",
+  width: "calc(100%-1rem)",
+  padding: "0.5rem 0.5rem",
 };

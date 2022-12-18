@@ -1,16 +1,20 @@
-import { invisibleButton } from "./invisibleButtonStyle";
+import { ReactNode, useMemo } from "react";
+import { invisibleButtonStyle } from "./invisibleButtonStyle";
 
 export const InvisibleButton = ({
   children,
   onClick,
   disabled,
+  fullWidth,
 }: {
-  children: JSX.Element;
+  children: ReactNode;
   onClick: () => void;
   disabled?: boolean;
+  fullWidth?: boolean;
 }): JSX.Element => {
+  const style = useMemo(() => invisibleButtonStyle(fullWidth), [fullWidth]);
   return (
-    <button disabled={disabled} style={invisibleButton} onClick={onClick}>
+    <button disabled={disabled} style={style} onClick={onClick}>
       {children}
     </button>
   );

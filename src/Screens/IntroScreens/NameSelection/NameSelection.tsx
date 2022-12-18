@@ -1,40 +1,32 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { generateId } from "../../../functions/generateId";
-import { setCurrentPlayerId } from "../../../functions/handleCurrentPlayerId";
+import { ConfirmButton } from "../../../Components/ConfirmButton/ConfirmButton";
+import { useCreatePlayer } from "../../../hooks/useCreatePlayer";
 import { ROUTES } from "../../../routes";
-import { useAddPlayerMutation } from "../../../services/internal";
 import { BottomContent } from "../../../UiComponents/BottomContent/BottomContent";
 import { Bottomer } from "../../../UiComponents/FlexBoxes/Bottomer/Bottomer";
 import { Center } from "../../../UiComponents/FlexBoxes/Center/Center";
-import { TextBox } from "../../../UiComponents/TextBox/TextBox";
+import { Pill } from "../../../UiComponents/Pill/Pill";
 
 export const NameSelection = (): JSX.Element => {
   const navigate = useNavigate();
   const [name, setName] = useState<string>("");
-
-  const [addPlayer] = useAddPlayerMutation();
+  const { createPlayer } = useCreatePlayer();
 
   const saveName = () => {
-    const id = generateId();
-    setCurrentPlayerId(id);
-    addPlayer({
-      id: id,
-      name: name,
-      money: 0,
-    });
+    createPlayer(name);
     navigate(ROUTES.CHARACTERSELECTION);
   };
 
   return (
     <BottomContent
       justifyContent="flex-end"
-      bottomContent={<TextBox text={"Now, what was your name again?"} />}
+      bottomContent={<Pill>"Now, what was your name again?"</Pill>}
     >
       <Bottomer>
-        <Center>
+        <Center horizontal>
           <div>
-            <Center>
+            <Center horizontal>
               <img
                 alt="oak"
                 src={process.env.PUBLIC_URL + "/assets/oak.jpeg"}
@@ -42,7 +34,7 @@ export const NameSelection = (): JSX.Element => {
               />
             </Center>
 
-            <p>
+            <Center vertical>
               <input
                 value={name}
                 onChange={(e: React.FormEvent<HTMLInputElement>) =>
@@ -50,13 +42,11 @@ export const NameSelection = (): JSX.Element => {
                 }
                 placeholder="Ash"
               />
-              <button
+              <ConfirmButton
                 disabled={name === "" || name.length > 20}
                 onClick={saveName}
-              >
-                Confirm
-              </button>
-            </p>
+              />
+            </Center>
           </div>
         </Center>
       </Bottomer>
