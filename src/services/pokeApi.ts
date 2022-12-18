@@ -1,9 +1,10 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { ItemQueryResponse } from "../Interfaces/ItemQueryResponse";
 import { PokemonQueryResponse } from "../Interfaces/PokemonQueryResponse";
 
 // Define a service using a base URL and expected endpoints
-export const pokemonMetaDataApi = createApi({
+export const pokeApi = createApi({
   reducerPath: "pokemonApi",
   baseQuery: fetchBaseQuery({ baseUrl: "https://pokeapi.co/api/v2/" }),
   endpoints: (builder) => ({
@@ -13,6 +14,9 @@ export const pokemonMetaDataApi = createApi({
     getPokemonMetaDataById: builder.query<PokemonQueryResponse, number>({
       query: (id) => `pokemon/${id}`,
     }),
+    getItemMetaDataByName: builder.query<ItemQueryResponse, string>({
+      query: (name) => `item/${name}`,
+    }),
   }),
 });
 
@@ -21,4 +25,5 @@ export const pokemonMetaDataApi = createApi({
 export const {
   useGetPokemonMetaDataByNameQuery,
   useGetPokemonMetaDataByIdQuery,
-} = pokemonMetaDataApi;
+  useGetItemMetaDataByNameQuery,
+} = pokeApi;

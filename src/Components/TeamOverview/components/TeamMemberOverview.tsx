@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Pokemon } from "../../../Interfaces/Pokemon";
 import { ROUTES } from "../../../routes";
 import { ErrorScreen } from "../../../Screens/ErrorScreen/ErrorScreen";
-import { useGetPokemonMetaDataByIdQuery } from "../../../services/pokemonMetaData";
+import { useGetPokemonMetaDataByIdQuery } from "../../../services/pokeApi";
 import { Box } from "../../../UiComponents/Box/Box";
 
 export const TeamMemberOverview = ({

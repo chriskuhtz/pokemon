@@ -24,6 +24,7 @@ export const Pokedex = (): JSX.Element => {
             <PokedexListItem
               id={d}
               owned={data.owned.find((o) => o === d) ? true : false}
+              key={d}
             />
           ))}
         </div>

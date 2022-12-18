@@ -13,7 +13,7 @@ import {
   useUpdateTeamMutation,
 } from "../../../services/internal";
 
-import { useGetPokemonMetaDataByNameQuery } from "../../../services/pokemonMetaData";
+import { useGetPokemonMetaDataByNameQuery } from "../../../services/pokeApi";
 import { BottomContent } from "../../../UiComponents/BottomContent/BottomContent";
 import { Bottomer } from "../../../UiComponents/FlexBoxes/Bottomer/Bottomer";
 import { Center } from "../../../UiComponents/FlexBoxes/Center/Center";

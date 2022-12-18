@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { BackButton } from "../../../Components/BackButton/BackButton";
 import { Pokemon } from "../../../Interfaces/Pokemon";
-import { useGetPokemonMetaDataByIdQuery } from "../../../services/pokemonMetaData";
+import { useGetPokemonMetaDataByIdQuery } from "../../../services/pokeApi";
 import { Box } from "../../../UiComponents/Box/Box";
 import { Button } from "../../../UiComponents/Button/Button";
 import { Container } from "../../../UiComponents/Container/Container";
@@ -34,6 +34,7 @@ export const SinglePokemonScreen = (): JSX.Element => {
         </h2>
 
         <Button
+          fullWidth
           onClick={() =>
             window.open(
               `https://pokemonmodules-pokedex.netlify.app/${pokemon.dexId}`,

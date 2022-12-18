@@ -1,5 +1,6 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Alert } from "../../../Components/Alert/Alert";
 import { ConfirmButton } from "../../../Components/ConfirmButton/ConfirmButton";
 import { getCurrentPlayerId } from "../../../functions/handleCurrentPlayerId";
 import { useMultiTextBox } from "../../../hooks/useMultiTextBox/useMultiTextBox";
@@ -7,10 +8,11 @@ import { ROUTES } from "../../../routes";
 import {
   useGetPlayerQuery,
   useGetTeamQuery,
+  useUpdateBagMutation,
   useUpdatePlayerMutation,
   useUpdateTeamMutation,
 } from "../../../services/internal";
-import { useGetPokemonMetaDataByIdQuery } from "../../../services/pokemonMetaData";
+import { useGetPokemonMetaDataByIdQuery } from "../../../services/pokeApi";
 import { BottomContent } from "../../../UiComponents/BottomContent/BottomContent";
 import { Bottomer } from "../../../UiComponents/FlexBoxes/Bottomer/Bottomer";
 import { Center } from "../../../UiComponents/FlexBoxes/Center/Center";
@@ -27,18 +29,24 @@ export const SendOff = () => {
   );
   const [updatePlayer] = useUpdatePlayerMutation();
   const [updateTeam] = useUpdateTeamMutation();
+  const [updateBag] = useUpdateBagMutation();
 
   const [name, setName] = useState<string>("");
 
-  const paragraphs: string[] = [
-    "An excellent Choice!",
-    `You and ${pokemonMetaData?.name} will make a great team.`,
-    `But first, your ${pokemonMetaData?.name} needs a nickname!`,
-    `${team?.pokemon?.[0].nickName}? What a fitting name for this Pokemon.`,
-    "Now, get ready for your Pokemon adventure.",
-    "Trust in your Pokemon and you can overcome any obstacle.",
-    `Good luck ${player?.name}, our paths will certainly cross again on your journey.`,
-  ];
+  const paragraphs: string[] = useMemo(
+    () => [
+      "An excellent Choice!",
+      `You and ${pokemonMetaData?.name} will make a great team.`,
+      `But first, your ${pokemonMetaData?.name} needs a nickname!`,
+      `${team?.pokemon?.[0].nickName}? What a fitting name for this Pokemon.`,
+      "You will also find these items very useful on your journey.",
+      "Please, take them with you.",
+      "Now, get ready for your Pokemon adventure.",
+      "Trust in your Pokemon and you can overcome any obstacle.",
+      `Good luck ${player?.name}, our paths will certainly cross again on your journey.`,
+    ],
+    [pokemonMetaData, player, team]
+  );
 
   const onLastClick = () => {
     player && updatePlayer({ ...player, money: 3000 });
@@ -47,6 +55,7 @@ export const SendOff = () => {
   const { index, handleClick } = useMultiTextBox(paragraphs, () =>
     onLastClick()
   );
+
   const saveName = () => {
     if (team?.pokemon[0])
       updateTeam({
@@ -55,7 +64,21 @@ export const SendOff = () => {
       });
     handleClick();
   };
-  const showNameInput = useMemo(() => index === 2, [index]);
+  const showNameInput = index === 2;
+  const willReceiveItems = index === 5;
+
+  useEffect(() => {
+    if (willReceiveItems) {
+      updateBag({
+        id: currentId,
+        items: [
+          { item: { name: "Potion" }, amount: 5 },
+          { item: { name: "Antidote" }, amount: 3 },
+          { item: { name: "Pokeball" }, amount: 5 },
+        ],
+      });
+    }
+  }, [index, currentId, updateBag, willReceiveItems]);
 
   if (!player || !team || !pokemonMetaData) {
     return <LoadingScreen />;
@@ -69,6 +92,10 @@ export const SendOff = () => {
         </Pill>
       }
     >
+      {willReceiveItems && (
+        <Alert>Received: 5 Potion, 3 Antidote, 5 Pokeball</Alert>
+      )}
+
       <Bottomer>
         <Center horizontal>
           <div>

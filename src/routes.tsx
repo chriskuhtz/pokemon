@@ -6,6 +6,7 @@ import { NameSelection } from "./Screens/IntroScreens/NameSelection/NameSelectio
 import { SaveFileSelection } from "./Screens/IntroScreens/SaveFileSelection/SaveFileSelection";
 import { SendOff } from "./Screens/IntroScreens/SendOff/SendOff";
 import { StarterSelection } from "./Screens/IntroScreens/StarterSelection/StarterSelection";
+import { BagScreen } from "./Screens/PlayerMenuScreens/Bag/BagScreen";
 import { PlayerMenu } from "./Screens/PlayerMenuScreens/PlayerMenu/PlayerMenu";
 import { Pokedex } from "./Screens/PlayerMenuScreens/Pokedex/Pokedex";
 import { SinglePokemonScreen } from "./Screens/PlayerMenuScreens/SinglePokemon/SinglePokemonScreen";
@@ -25,6 +26,7 @@ export enum ROUTES {
   TRAINEROVERVIEW = "/menu/trainer-overview",
   POKEDEX = "/menu/pokedex",
   SINGLEPOKEMON = "/menu/pokemon",
+  BAG = "/menu/bag",
 }
 
 export const createdRoutes = createRoutesFromElements([
@@ -41,4 +43,5 @@ export const createdRoutes = createRoutesFromElements([
   <Route path={ROUTES.TRAINEROVERVIEW} element={<TrainerOverview />} />,
   <Route path={ROUTES.POKEDEX} element={<Pokedex />} />,
   <Route path={ROUTES.SINGLEPOKEMON} element={<SinglePokemonScreen />} />,
+  <Route path={ROUTES.BAG} element={<BagScreen />} />,
 ]);

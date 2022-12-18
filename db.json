@@ -1,61 +1,110 @@
 {
   "players": [
     {
-      "id": 60049394519,
-      "name": "brs",
-      "character": 0,
+      "id": 47452098204,
+      "name": "bb",
+      "character": 1,
+      "money": 3000
+    },
+    {
+      "id": 58807199347,
+      "name": "jloinl",
+      "character": 6,
       "money": 3000
     }
   ],
   "teams": [
     {
-      "id": 60049394519,
+      "id": 47452098204,
       "pokemon": [
         {
-          "id": 92867657565,
+          "id": 87137732990,
+          "dexId": 613,
+          "ownerId": 47452098204,
+          "nickName": "ojj"
+        }
+      ]
+    },
+    {
+      "id": 58807199347,
+      "pokemon": [
+        {
+          "id": 40761040193,
           "dexId": 674,
-          "ownerId": 60049394519,
-          "nickName": "jbi"
-        },
-        {
-          "id": 92867653565,
-          "dexId": 3,
-          "ownerId": 60049394519,
-          "nickName": "jbi"
-        },
-        {
-          "id": 92867657765,
-          "dexId": 150,
-          "ownerId": 60049394519,
-          "nickName": "jbi"
-        },
-        {
-          "id": 92863657565,
-          "dexId": 301,
-          "ownerId": 60049394519,
-          "nickName": "jbi"
-        },
-
-        {
-          "id": 92847657565,
-          "dexId": 89,
-          "ownerId": 60049394519,
-          "nickName": "jbi"
+          "ownerId": 58807199347,
+          "nickName": "jnlk"
         }
       ]
     }
   ],
   "pcstorages": [
     {
-      "id": 60049394519,
+      "id": 47452098204,
+      "pokemon": []
+    },
+    {
+      "id": 58807199347,
       "pokemon": []
     }
   ],
   "pokedexes": [
     {
-      "id": 60049394519,
-      "seen": [674],
-      "owned": [674]
+      "id": 47452098204,
+      "seen": [12, 44, 456, 613],
+      "owned": [613]
+    },
+    {
+      "id": 58807199347,
+      "seen": [12, 44, 456, 613, 674],
+      "owned": [12, 674]
+    }
+  ],
+  "bags": [
+    {
+      "id": 47452098204,
+      "items": [
+        {
+          "item": {
+            "name": "Potion"
+          },
+          "amount": 5
+        },
+        {
+          "item": {
+            "name": "Antidote"
+          },
+          "amount": 3
+        },
+        {
+          "item": {
+            "name": "Poke-ball"
+          },
+          "amount": 5
+        }
+      ]
+    },
+    {
+      "id": 58807199347,
+      "items": [
+        {
+          "item": {
+            "name": "Potion"
+          },
+          "amount": 5
+        },
+        {
+          "item": {
+            "name": "Antidote"
+          },
+          "amount": 3
+        },
+        {
+          "item": {
+            "name": "Poke-ball"
+          },
+          "amount": 5
+        }
+      ]
     }
   ]
 }

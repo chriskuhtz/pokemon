@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { Bag } from "../Interfaces/Bag";
 import { PCStorage } from "../Interfaces/PCStorage";
 import { Player } from "../Interfaces/Player";
 import { Pokedex } from "../Interfaces/Pokedex";
@@ -7,7 +8,15 @@ import { Team } from "../Interfaces/Team";
 export const internalApi = createApi({
   reducerPath: "internalApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/" }),
-  tagTypes: ["Player", "Players", "Team", "Teams", "PCStorage", "Pokedex"],
+  tagTypes: [
+    "Player",
+    "Players",
+    "Team",
+    "Teams",
+    "PCStorage",
+    "Pokedex",
+    "Bag",
+  ],
   endpoints: (builder) => ({
     //PLAYER
     getPlayers: builder.query<Player[], void>({
@@ -94,6 +103,26 @@ export const internalApi = createApi({
         body: pokedex,
       }),
     }),
+    //BAG
+    getBag: builder.query<Bag, number>({
+      query: (id) => `bags/${id}`,
+      providesTags: ["Bag"],
+    }),
+    updateBag: builder.mutation<void, Bag>({
+      query: (bag: Bag) => ({
+        url: `bags/${bag.id}`,
+        method: "PUT",
+        body: bag,
+      }),
+      invalidatesTags: ["Bag"],
+    }),
+    createNewBag: builder.mutation<void, Bag>({
+      query: (bag: Bag) => ({
+        url: `bags`,
+        method: "POST",
+        body: bag,
+      }),
+    }),
   }),
 });
 
@@ -111,4 +140,7 @@ export const {
   useCreateNewPCStorageMutation,
   useGetPCStorageQuery,
   useUpdatePCStorageMutation,
+  useCreateNewBagMutation,
+  useGetBagQuery,
+  useUpdateBagMutation,
 } = internalApi;

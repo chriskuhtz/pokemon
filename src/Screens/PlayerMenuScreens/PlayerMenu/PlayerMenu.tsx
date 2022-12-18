@@ -55,10 +55,12 @@ export const PlayerMenu = (): JSX.Element => {
           }}
         >
           <TrainerCard trainer={player} />
-          <Button disabled onClick={() => navigate(ROUTES.POKEDEX)}>
-            Bag
+          <Button onClick={() => navigate(ROUTES.BAG)} fullWidth>
+            <strong>Bag</strong>
           </Button>
-          <Button onClick={() => navigate(ROUTES.POKEDEX)}>Pokedex</Button>
+          <Button onClick={() => navigate(ROUTES.POKEDEX)} fullWidth>
+            <strong>Pokedex</strong>
+          </Button>
         </div>
       </div>
     </Container>
