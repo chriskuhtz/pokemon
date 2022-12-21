@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { BackButton } from "../../../Components/BackButton/BackButton";
 import { TeamOverview } from "../../../Components/TeamOverview/TeamOverview";
 import { TrainerCard } from "../../../Components/TrainerCard/TrainerCard";
 import { getCurrentPlayerId } from "../../../functions/handleCurrentPlayerId";
@@ -31,6 +32,7 @@ export const PlayerMenu = (): JSX.Element => {
 
   return (
     <Container>
+      <BackButton />
       <div style={{ display: "flex" }}>
         <div
           style={{

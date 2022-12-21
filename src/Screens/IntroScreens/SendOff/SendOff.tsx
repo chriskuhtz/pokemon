@@ -50,7 +50,7 @@ export const SendOff = () => {
 
   const onLastClick = () => {
     player && updatePlayer({ ...player, money: 3000 });
-    navigate(ROUTES.PLAYERMENU);
+    navigate(ROUTES.OVERWORLD);
   };
   const { index, handleClick } = useMultiTextBox(paragraphs, () =>
     onLastClick()
