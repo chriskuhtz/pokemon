@@ -50,7 +50,7 @@ export const SendOff = () => {
 
   const onLastClick = () => {
     player && updatePlayer({ ...player, money: 3000 });
-    navigate(ROUTES.PLAYERMENU);
+    navigate(ROUTES.OVERWORLD);
   };
   const { index, handleClick } = useMultiTextBox(paragraphs, () =>
     onLastClick()
@@ -74,7 +74,7 @@ export const SendOff = () => {
         items: [
           { item: { name: "Potion" }, amount: 5 },
           { item: { name: "Antidote" }, amount: 3 },
-          { item: { name: "Pokeball" }, amount: 5 },
+          { item: { name: "Poke-ball" }, amount: 5 },
         ],
       });
     }

@@ -1,6 +1,7 @@
 import { configureStore, ConfigureStoreOptions } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { internalApi } from "../services/internal";
+import { mapApi } from "../services/map";
 import { pokeApi } from "../services/pokeApi";
 
 export const createStore = (
@@ -9,12 +10,14 @@ export const createStore = (
   configureStore({
     reducer: {
       [pokeApi.reducerPath]: pokeApi.reducer,
+      [mapApi.reducerPath]: mapApi.reducer,
       [internalApi.reducerPath]: internalApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat([
         pokeApi.middleware,
         internalApi.middleware,
+        mapApi.middleware,
       ]),
   });
 

@@ -15,7 +15,7 @@ export const SaveFileSelection = () => {
 
   const loadGame = (id: number) => {
     setCurrentPlayerId(id);
-    navigate(ROUTES.PLAYERMENU);
+    navigate(ROUTES.OVERWORLD);
   };
 
   const startNewGame = () => {

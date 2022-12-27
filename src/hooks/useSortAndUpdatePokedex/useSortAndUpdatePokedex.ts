@@ -18,7 +18,7 @@ export const useSortAndUpdatePokedex = () => {
       return array;
     }
     const index: number = array.findIndex((i) => i > newEntry) ?? -1;
-    console.log(index);
+
     const tempArray: number[] = [...array];
     if (index === -1) {
       tempArray.push(newEntry);

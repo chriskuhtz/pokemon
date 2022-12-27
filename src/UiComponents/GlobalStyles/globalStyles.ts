@@ -1,5 +1,7 @@
 export const absolutePosition: "absolute" = "absolute";
 
+export const relativePosition: "relative" = "relative";
+
 export const flexDirectionColumn: "column" = "column";
 
 export const flexWrap: "wrap" = "wrap";
