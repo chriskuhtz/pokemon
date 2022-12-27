@@ -74,7 +74,7 @@ export const SendOff = () => {
         items: [
           { item: { name: "Potion" }, amount: 5 },
           { item: { name: "Antidote" }, amount: 3 },
-          { item: { name: "Pokeball" }, amount: 5 },
+          { item: { name: "Poke-ball" }, amount: 5 },
         ],
       });
     }

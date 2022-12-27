@@ -7,7 +7,7 @@ import { Team } from "../Interfaces/Team";
 
 export const internalApi = createApi({
   reducerPath: "internalApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3001/" }),
   tagTypes: [
     "Player",
     "Players",

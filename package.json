@@ -23,8 +23,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "startJson": "json-server --watch db.json",
-    "start": "PORT=3001 react-scripts start",
+    "startPlayerService": "json-server --watch db.json --port 3001",
+    "startMapsService": "json-server --watch mapDB.json --port 3002",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

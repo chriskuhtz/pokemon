@@ -16,7 +16,7 @@ export const PlayerSprite = ({
   return (
     <img
       style={playerSpriteStyle}
-      src={`/assets/playerSprites/${id}.png`}
+      src={`/assets/playerSprites/${id}/Down.png`}
       alt={`playerSprite ${id}`}
       height="40px"
       onClick={handleClick}

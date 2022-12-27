@@ -1,3 +1,13 @@
 export const LoadingScreen = () => {
-  return <div>LOADING LOADING LOADING</div>;
+  return (
+    <div
+      style={{
+        backgroundColor: "black",
+        color: "antiquewhite",
+        height: "100vh",
+      }}
+    >
+      LOADING LOADING LOADING
+    </div>
+  );
 };

@@ -23,6 +23,12 @@ export const useCreatePlayer = () => {
       name: name,
       character: 0,
       money: 0,
+      playerLocation: {
+        mapId: 0,
+        playerOrientation: "DOWN",
+        position: { x: 0, y: 0 },
+      },
+      overworldProgress: [],
     });
     createNewTeam({ id: id, pokemon: [] });
     createNewPCStorage({ id: id, pokemon: [] });

@@ -1,3 +1,7 @@
 export const ErrorScreen = ({ text }: { text?: string }) => {
-  return <div>{text ?? "ERROR ERROR ERROR"}</div>;
+  return (
+    <div style={{ backgroundColor: "black", color: "antiquewhite" }}>
+      {text ?? "ERROR ERROR ERROR"}
+    </div>
+  );
 };
