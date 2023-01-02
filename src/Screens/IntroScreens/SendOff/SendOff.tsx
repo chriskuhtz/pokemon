@@ -1,14 +1,13 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Alert } from "../../../Components/Alert/Alert";
 import { ConfirmButton } from "../../../Components/ConfirmButton/ConfirmButton";
 import { getCurrentPlayerId } from "../../../functions/handleCurrentPlayerId";
 import { useMultiTextBox } from "../../../hooks/useMultiTextBox/useMultiTextBox";
+import { useUpdateBag } from "../../../hooks/useUpdateBag/useUpdateBag";
 import { ROUTES } from "../../../routes";
 import {
   useGetPlayerQuery,
   useGetTeamQuery,
-  useUpdateBagMutation,
   useUpdatePlayerMutation,
   useUpdateTeamMutation,
 } from "../../../services/internal";
@@ -29,7 +28,7 @@ export const SendOff = () => {
   );
   const [updatePlayer] = useUpdatePlayerMutation();
   const [updateTeam] = useUpdateTeamMutation();
-  const [updateBag] = useUpdateBagMutation();
+  const { addItems } = useUpdateBag();
 
   const [name, setName] = useState<string>("");
 
@@ -52,9 +51,25 @@ export const SendOff = () => {
     player && updatePlayer({ ...player, money: 3000 });
     navigate(ROUTES.OVERWORLD);
   };
-  const { index, handleClick } = useMultiTextBox(paragraphs, () =>
-    onLastClick()
+  const receiveItems = async () => {
+    await addItems([
+      { item: { name: "potion" }, amount: 5 },
+      { item: { name: "poke-ball" }, amount: 5 },
+      { item: { name: "antidote" }, amount: 5 },
+    ]);
+  };
+
+  const { index, handleClick } = useMultiTextBox(
+    paragraphs,
+    () => onLastClick(),
+    [
+      {
+        index: 5,
+        action: () => void receiveItems(),
+      },
+    ]
   );
+  const showNameInput = index === 2;
 
   const saveName = () => {
     if (team?.pokemon[0])
@@ -64,21 +79,6 @@ export const SendOff = () => {
       });
     handleClick();
   };
-  const showNameInput = index === 2;
-  const willReceiveItems = index === 5;
-
-  useEffect(() => {
-    if (willReceiveItems) {
-      updateBag({
-        id: currentId,
-        items: [
-          { item: { name: "Potion" }, amount: 5 },
-          { item: { name: "Antidote" }, amount: 3 },
-          { item: { name: "Poke-ball" }, amount: 5 },
-        ],
-      });
-    }
-  }, [index, currentId, updateBag, willReceiveItems]);
 
   if (!player || !team || !pokemonMetaData) {
     return <LoadingScreen />;
@@ -92,10 +92,6 @@ export const SendOff = () => {
         </Pill>
       }
     >
-      {willReceiveItems && (
-        <Alert>Received: 5 Potion, 3 Antidote, 5 Pokeball</Alert>
-      )}
-
       <Bottomer>
         <Center horizontal>
           <div>

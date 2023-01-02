@@ -24,6 +24,7 @@ export const pokeApi = createApi({
 // auto-generated based on the defined endpoints
 export const {
   useGetPokemonMetaDataByNameQuery,
+  useLazyGetPokemonMetaDataByIdQuery,
   useGetPokemonMetaDataByIdQuery,
   useGetItemMetaDataByNameQuery,
 } = pokeApi;

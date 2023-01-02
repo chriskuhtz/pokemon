@@ -20,7 +20,8 @@
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
     "typescript": "^4.9.3",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "react-toastify": "^9"
   },
   "scripts": {
     "startPlayerService": "json-server --watch db.json --port 3001",
@@ -28,7 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deleteDB": "./deleteDB.sh"
   },
   "eslintConfig": {
     "extends": [

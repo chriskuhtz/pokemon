@@ -1,6 +1,6 @@
 import { BackButton } from "../../../Components/BackButton/BackButton";
 import { getCurrentPlayerId } from "../../../functions/handleCurrentPlayerId";
-import { BagEntry } from "../../../Interfaces/Bag";
+import { ItemStack } from "../../../Interfaces/Bag";
 import { useGetBagQuery } from "../../../services/internal";
 import { Container } from "../../../UiComponents/Container/Container";
 import { LoadingScreen } from "../../LoadingScreen/LoadingScreen";
@@ -17,8 +17,8 @@ export const BagScreen = (): JSX.Element => {
   return (
     <Container>
       <BackButton />
-      {data.items.map((bagEntry: BagEntry) => (
-        <BagListItem bagEntry={bagEntry} key={bagEntry.item.name} />
+      {data.items.map((ItemStack: ItemStack) => (
+        <BagListItem ItemStack={ItemStack} key={ItemStack.item.name} />
       ))}
     </Container>
   );

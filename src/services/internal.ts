@@ -143,4 +143,5 @@ export const {
   useCreateNewBagMutation,
   useGetBagQuery,
   useUpdateBagMutation,
+  useLazyGetBagQuery,
 } = internalApi;

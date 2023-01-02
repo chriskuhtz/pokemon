@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { getCurrentPlayerId } from "../../../functions/handleCurrentPlayerId";
+import { useUpdateBag } from "../../../hooks/useUpdateBag/useUpdateBag";
 import { Direction, MapField, Position } from "../../../Interfaces/Overworld";
 import { OverworldMapProgress } from "../../../Interfaces/Player";
 import {
@@ -70,6 +71,7 @@ export const useOverworldScreen = () => {
   const { data: mapData, isFetching: isMapDataFetching } = useGetMapQuery(
     playerData?.playerLocation.mapId ?? -1
   );
+  const { addItems } = useUpdateBag();
   const { collectedItems, mapId }: OverworldMapProgress = useMemo(
     () =>
       playerData?.overworldProgress.find(
@@ -137,7 +139,6 @@ export const useOverworldScreen = () => {
 
   const isImpassable = useCallback(
     (field: MapField): boolean => {
-      console.log("isImpassable", field.occupant);
       if (field.occupant) {
         if (field.occupant.occupantType === "PORTAL") {
           return false;
@@ -202,6 +203,7 @@ export const useOverworldScreen = () => {
         } else
           updatedOverworldProgress.splice(indexToUpdate, 1, updatedMapProgress);
 
+        addItems([occupant.item]);
         updatePlayer({
           ...playerData,
           playerLocation: { mapId: mapId, position, playerOrientation },

@@ -2,12 +2,12 @@ export interface Item {
   name: string;
 }
 
-export interface BagEntry {
+export interface ItemStack {
   item: Item;
   amount: number;
 }
 
 export interface Bag {
   id: number;
-  items: BagEntry[];
+  items: ItemStack[];
 }
