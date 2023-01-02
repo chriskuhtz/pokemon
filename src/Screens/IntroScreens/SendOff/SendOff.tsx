@@ -53,9 +53,9 @@ export const SendOff = () => {
   };
   const receiveItems = async () => {
     await addItems([
-      { item: { name: "Potion" }, amount: 5 },
-      { item: { name: "Poke-ball" }, amount: 5 },
-      { item: { name: "Antidote" }, amount: 5 },
+      { item: { name: "potion" }, amount: 5 },
+      { item: { name: "poke-ball" }, amount: 5 },
+      { item: { name: "antidote" }, amount: 5 },
     ]);
   };
 

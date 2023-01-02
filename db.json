@@ -7,13 +7,20 @@
       "money": 3000,
       "playerLocation": {
         "mapId": 0,
-        "playerOrientation": "DOWN",
         "position": {
-          "x": 7,
-          "y": 4
-        }
+          "y": 3,
+          "x": 2
+        },
+        "playerOrientation": "UP"
       },
-      "overworldProgress": []
+      "overworldProgress": [
+        {
+          "mapId": 0,
+          "collectedItems": [
+            1
+          ]
+        }
+      ]
     }
   ],
   "teams": [
@@ -67,6 +74,10 @@
             "name": "Antidote"
           },
           "amount": 10
+        },
+        {
+          "item": "potion",
+          "amount": 1
         }
       ]
     }
