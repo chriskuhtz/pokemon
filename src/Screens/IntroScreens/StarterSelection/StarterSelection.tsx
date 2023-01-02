@@ -27,11 +27,11 @@ export const StarterSelection = (): JSX.Element => {
   const navigate = useNavigate();
   const currentId = useMemo(() => getCurrentPlayerId() ?? -1, []);
   const { data: firstMon, isLoading: isFirstMonLoading } =
-    useGetPokemonMetaDataByNameQuery("teddiursa");
+    useGetPokemonMetaDataByNameQuery("bulbasaur");
   const { data: secondMon, isLoading: isSecondMonLoading } =
-    useGetPokemonMetaDataByNameQuery("pancham");
+    useGetPokemonMetaDataByNameQuery("charmander");
   const { data: thirdMon, isLoading: isThirdMonLoading } =
-    useGetPokemonMetaDataByNameQuery("cubchoo");
+    useGetPokemonMetaDataByNameQuery("squirtle");
   const { data: player, isLoading: isPlayerLoading } =
     useGetPlayerQuery(currentId);
 

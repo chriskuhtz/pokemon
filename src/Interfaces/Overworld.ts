@@ -1,3 +1,5 @@
+import { ItemStack } from "./Bag";
+
 export interface MapField {
   texture: string;
   impassable?: boolean;
@@ -13,7 +15,7 @@ export interface BaseOccupant {
 
 export interface OverworldItem extends BaseOccupant {
   occupantType: "ITEM";
-  item: string;
+  item: ItemStack;
 }
 export interface OverworldPortal extends BaseOccupant {
   occupantType: "PORTAL";

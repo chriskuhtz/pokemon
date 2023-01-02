@@ -1,7 +1,74 @@
 {
-  "players": [],
-  "teams": [],
-  "pcstorages": [],
-  "pokedexes": [],
-  "bags": []
+  "players": [
+    {
+      "id": 34849487198,
+      "name": "fet",
+      "character": 0,
+      "money": 3000,
+      "playerLocation": {
+        "mapId": 0,
+        "playerOrientation": "DOWN",
+        "position": {
+          "x": 7,
+          "y": 4
+        }
+      },
+      "overworldProgress": []
+    }
+  ],
+  "teams": [
+    {
+      "id": 34849487198,
+      "pokemon": [
+        {
+          "id": 64912643574,
+          "dexId": 1,
+          "ownerId": 34849487198,
+          "nickName": "bubu"
+        }
+      ]
+    }
+  ],
+  "pcstorages": [
+    {
+      "id": 34849487198,
+      "pokemon": []
+    }
+  ],
+  "pokedexes": [
+    {
+      "id": 34849487198,
+      "seen": [
+        1
+      ],
+      "owned": [
+        1
+      ]
+    }
+  ],
+  "bags": [
+    {
+      "id": 34849487198,
+      "items": [
+        {
+          "item": {
+            "name": "Potion"
+          },
+          "amount": 10
+        },
+        {
+          "item": {
+            "name": "Pokeball"
+          },
+          "amount": 10
+        },
+        {
+          "item": {
+            "name": "Antidote"
+          },
+          "amount": 10
+        }
+      ]
+    }
+  ]
 }

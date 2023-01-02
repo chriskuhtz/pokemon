@@ -15,25 +15,29 @@ export const useCreatePlayer = () => {
   const [createNewTeam] = useCreateNewTeamMutation();
   const [createNewBag] = useCreateNewBagMutation();
 
-  const createPlayer = (name: string) => {
+  const createPlayer = async (name: string) => {
     const id = generateId();
+
     setCurrentPlayerId(id);
-    addPlayer({
-      id: id,
-      name: name,
-      character: 0,
-      money: 0,
-      playerLocation: {
-        mapId: 0,
-        playerOrientation: "DOWN",
-        position: { x: 0, y: 0 },
-      },
-      overworldProgress: [],
-    });
-    createNewTeam({ id: id, pokemon: [] });
-    createNewPCStorage({ id: id, pokemon: [] });
-    createNewPokedex({ id: id, seen: [], owned: [] });
-    createNewBag({ id: id, items: [] });
+
+    await Promise.allSettled([
+      addPlayer({
+        id: id,
+        name: name,
+        character: 0,
+        money: 0,
+        playerLocation: {
+          mapId: 0,
+          playerOrientation: "DOWN",
+          position: { x: 7, y: 4 },
+        },
+        overworldProgress: [],
+      }),
+      createNewTeam({ id: id, pokemon: [] }),
+      createNewPCStorage({ id: id, pokemon: [] }),
+      createNewPokedex({ id: id, seen: [], owned: [] }),
+      createNewBag({ id: id, items: [] }),
+    ]);
   };
 
   return { createPlayer };

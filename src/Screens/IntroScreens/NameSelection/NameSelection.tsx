@@ -13,8 +13,8 @@ export const NameSelection = (): JSX.Element => {
   const [name, setName] = useState<string>("");
   const { createPlayer } = useCreatePlayer();
 
-  const saveName = () => {
-    createPlayer(name);
+  const saveName = async () => {
+    await createPlayer(name);
     navigate(ROUTES.CHARACTERSELECTION);
   };
 
@@ -44,7 +44,7 @@ export const NameSelection = (): JSX.Element => {
               />
               <ConfirmButton
                 disabled={name === "" || name.length > 20}
-                onClick={saveName}
+                onClick={() => void saveName()}
               />
             </Center>
           </div>

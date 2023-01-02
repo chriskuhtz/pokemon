@@ -1,14 +1,14 @@
-import { BagEntry } from "../../../../Interfaces/Bag";
+import { ItemStack } from "../../../../Interfaces/Bag";
 import { useGetItemMetaDataByNameQuery } from "../../../../services/pokeApi";
 import { Pill } from "../../../../UiComponents/Pill/Pill";
 
 export const BagListItem = ({
-  bagEntry,
+  ItemStack,
 }: {
-  bagEntry: BagEntry;
+  ItemStack: ItemStack;
 }): JSX.Element => {
   const { data } = useGetItemMetaDataByNameQuery(
-    bagEntry.item.name.toLowerCase()
+    ItemStack.item.name.toLowerCase()
   );
 
   if (!data) {
@@ -34,14 +34,14 @@ export const BagListItem = ({
               gap: "2rem",
             }}
           >
-            <img alt={bagEntry.item.name} src={data.sprites.default} />
+            <img alt={ItemStack.item.name} src={data.sprites.default} />
             <div>
               <strong>{data.name}</strong>
               <div>{data.flavor_text_entries[0].text}</div>
             </div>
           </div>
 
-          <strong>{bagEntry.amount}</strong>
+          <strong>{ItemStack.amount}</strong>
         </div>
       </Pill>
     </div>

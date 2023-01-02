@@ -4,11 +4,16 @@ import {
   useGetPokedexQuery,
   useUpdatePokedexMutation,
 } from "../../services/internal";
+import { useLazyGetPokemonMetaDataByIdQuery } from "../../services/pokeApi";
+import { Pill } from "../../UiComponents/Pill/Pill";
+import { useCustomToast } from "../useCustomToast/useCustomToast";
 
 export const useSortAndUpdatePokedex = () => {
   const currentId = useMemo(() => getCurrentPlayerId() ?? -1, []);
   const { data: pokedex } = useGetPokedexQuery(currentId);
   const [updatePokedex] = useUpdatePokedexMutation();
+  const [getPokemonMetaDataById] = useLazyGetPokemonMetaDataByIdQuery();
+  const { notify } = useCustomToast();
 
   const isIncluded = (array: number[], newEntry: number) => {
     return array.find((i) => i === newEntry);
@@ -26,7 +31,8 @@ export const useSortAndUpdatePokedex = () => {
     return tempArray;
   };
 
-  const sortAndUpdatePokedex = (newEntry: number, owned?: boolean) => {
+  const sortAndUpdatePokedex = async (newEntry: number, owned?: boolean) => {
+    const { name } = await getPokemonMetaDataById(newEntry).unwrap();
     if (
       pokedex &&
       !isIncluded(pokedex.seen, newEntry) &&
@@ -37,7 +43,16 @@ export const useSortAndUpdatePokedex = () => {
         seen: updateArray(pokedex.seen, newEntry),
         owned: owned ? updateArray(pokedex.owned, newEntry) : pokedex?.owned,
       };
-      updatePokedex(updatedDex);
+
+      await updatePokedex(updatedDex);
+      notify(
+        <Pill>
+          <>
+            {owned ? "registered " : "seen "}
+            {name}
+          </>
+        </Pill>
+      );
     } else console.error("could not load pokedex");
   };
 
