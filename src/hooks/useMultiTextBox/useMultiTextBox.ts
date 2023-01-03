@@ -9,6 +9,9 @@ export const useMultiTextBox = (
 
   const handleClick = () => {
     const max = paragraphs.length - 1;
+    // if (max === -1) {
+    //   return;
+    // }
 
     const extraActionIndex = onIndexActions?.findIndex(
       (indexAction) => indexAction.index === index
@@ -19,7 +22,10 @@ export const useMultiTextBox = (
     }
     if (index < max) {
       setIndex(index + 1);
-    } else onLastClick && onLastClick();
+    } else {
+      onLastClick && onLastClick();
+      setIndex(0);
+    }
   };
   return { index, handleClick };
 };
