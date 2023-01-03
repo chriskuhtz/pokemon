@@ -72,7 +72,7 @@
             "texture": "field",
             "occupant": {
               "id": 1,
-              "item": { "item": "potion", "amount": 1 },
+              "item": { "name": "potion", "amount": 1 },
               "occupantType": "ITEM"
             }
           },
@@ -183,7 +183,7 @@
             "texture": "field",
             "occupant": {
               "id": 1,
-              "item": { "item": "poke-ball", "amount": 1 },
+              "item": { "name": "poke-ball", "amount": 1 },
               "occupantType": "ITEM"
             }
           },

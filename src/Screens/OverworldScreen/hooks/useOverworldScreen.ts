@@ -79,6 +79,7 @@ export const useOverworldScreen = () => {
       ) ?? { collectedItems: [], mapId: mapData?.id ?? -1 },
     [playerData, mapData]
   );
+  const [paragraphs, setParagraphs] = useState<string[]>([]);
 
   const [updatePlayer] = useUpdatePlayerMutation();
 
@@ -210,6 +211,9 @@ export const useOverworldScreen = () => {
           overworldProgress: [...updatedOverworldProgress],
         });
       }
+      if (occupant?.occupantType === "INHABITANT") {
+        setParagraphs(occupant.dialogue);
+      }
     }
     if (occupant?.onClick) {
       occupant.onClick();
@@ -278,5 +282,7 @@ export const useOverworldScreen = () => {
     handleActionButtonClick,
     mapData: mapData ?? { map: fallbackmap, id: 0, name: "fallbackmap" },
     isFetching: isMapDataFetching || isPlayerDataFetching || isPortaling,
+    paragraphs,
+    setParagraphs,
   };
 };
