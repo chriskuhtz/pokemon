@@ -3,13 +3,12 @@ import { OverworldItem } from "../../../../../../Interfaces/Overworld";
 import { useGetPlayerQuery } from "../../../../../../services/internal";
 import { useGetItemMetaDataByNameQuery } from "../../../../../../services/pokeApi";
 import { absolutePosition } from "../../../../../../UiComponents/GlobalStyles/globalStyles";
+import { size } from "../../../../OverworldScreen";
 
 export const OverworldItemDisplay = ({
   item,
-  size,
 }: {
   item: OverworldItem;
-  size: number;
 }): JSX.Element => {
   const { data, isLoading } = useGetItemMetaDataByNameQuery("poke-ball");
   const currentId = getCurrentPlayerId();

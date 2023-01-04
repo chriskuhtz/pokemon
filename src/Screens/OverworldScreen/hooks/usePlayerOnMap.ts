@@ -1,9 +1,15 @@
 import { useCallback, useMemo, useState } from "react";
 import { getCurrentPlayerId } from "../../../functions/handleCurrentPlayerId";
-import { Direction, Occupant, Position } from "../../../Interfaces/Overworld";
+import {
+  Direction,
+  MapObjectInstance,
+  Occupant,
+  Position,
+} from "../../../Interfaces/Overworld";
 import { OverworldMapProgress } from "../../../Interfaces/Player";
 import { useGetPlayerQuery } from "../../../services/internal";
 import { useGetMapQuery } from "../../../services/map";
+import { useIsImpassable } from "./useIsImpassable";
 
 export const usePlayerOnMap = () => {
   const currentId = useMemo(() => getCurrentPlayerId() ?? -1, []);
@@ -27,9 +33,10 @@ export const usePlayerOnMap = () => {
       ) ?? { collectedItems: [], mapId: mapData?.id ?? -1 },
     [playerData, mapData]
   );
+  const { isImpassable } = useIsImpassable();
 
   const adjoiningField:
-    | { position: Position; occupant?: Occupant }
+    | { position: Position; occupant?: Occupant; object?: MapObjectInstance }
     | undefined = useMemo(() => {
     if (!mapData) {
       return undefined;
@@ -41,12 +48,18 @@ export const usePlayerOnMap = () => {
         (o) => o.position.x === position.x && o.position.y === position.y
       );
     };
+    const findObject = (position: Position) => {
+      return mapData?.objects.find(
+        (o) => o.position.x === position.x && o.position.y === position.y
+      );
+    };
 
     if (playerOrientation === "UP" && position.y - 1 > -1) {
       newPosition = { y: position.y - 1, x: position.x };
       return {
         position: newPosition,
         occupant: findOccupant(newPosition),
+        object: findObject(newPosition),
       };
     }
     if (playerOrientation === "LEFT" && position.x - 1 > -1) {
@@ -54,6 +67,7 @@ export const usePlayerOnMap = () => {
       return {
         position: newPosition,
         occupant: findOccupant(newPosition),
+        object: findObject(newPosition),
       };
     }
     if (playerOrientation === "RIGHT" && position.x + 1 < mapData.width) {
@@ -61,45 +75,32 @@ export const usePlayerOnMap = () => {
       return {
         position: newPosition,
         occupant: findOccupant(newPosition),
+        object: findObject(newPosition),
       };
     }
     if (playerOrientation === "DOWN" && position.y + 1 < mapData.height) {
       return {
         position: newPosition,
         occupant: findOccupant(newPosition),
+        object: findObject(newPosition),
       };
     }
+    return undefined;
   }, [position, playerOrientation, mapData]);
-  const isImpassable = useCallback(
-    (occupant?: Occupant): boolean => {
-      if (!occupant) {
-        return false;
-      }
-      if (occupant.occupantType === "PORTAL") {
-        return false;
-      }
-      if (
-        occupant.occupantType === "ITEM" &&
-        collectedItems.find((itemId) => itemId === occupant?.id)
-      ) {
-        //fields with a collected item are passable
-        return false;
-      }
-      //occupied fields are impassable
-      return true;
-    },
-    [collectedItems]
-  );
 
   const move = useCallback(
-    (direction: Direction) => {
+    async (direction: Direction) => {
       if (playerOrientation !== direction) {
         setPlayerOrientation(direction);
         return;
       }
       if (adjoiningField) {
-        if (!isImpassable(adjoiningField.occupant))
-          setPosition(adjoiningField.position);
+        const impassable = await isImpassable(
+          collectedItems,
+          adjoiningField.occupant,
+          adjoiningField.object
+        );
+        if (!impassable) setPosition(adjoiningField.position);
       }
     },
     [
