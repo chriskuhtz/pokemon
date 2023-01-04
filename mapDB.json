@@ -3,340 +3,58 @@
     {
       "id": 0,
       "name": "testmap",
-      "map": [
-        [
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true }
-        ],
-        [
-          { "texture": "rock", "impassable": true },
-          {
-            "texture": "field",
-            "occupant": {
-              "occupantType": "INHABITANT",
-              "inhabitantOrientation": "RIGHT",
-              "characterSprite": 7,
-              "dialogue": ["Dude!", "Technology is freakin amazeballs."]
-            }
-          },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          {
-            "texture": "field",
-            "occupant": {
-              "occupantType": "INHABITANT",
-              "inhabitantOrientation": "DOWN",
-              "characterSprite": 4,
-              "dialogue": [
-                "That Boy aint right!",
-                "He should care more about honoring his ancestors than technology.",
-                "The whole world is going to shit and every Pokemon after Gen 1 sucks."
-              ]
-            }
-          },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "rock", "impassable": true }
-        ],
-        [
-          { "texture": "rock", "impassable": true },
-          { "texture": "field" },
-          {
-            "texture": "field",
-            "occupant": {
-              "id": 1,
-              "item": { "name": "potion", "amount": 1 },
-              "occupantType": "ITEM"
-            }
-          },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "rock", "impassable": true }
-        ],
-        [
-          { "texture": "rock", "impassable": true },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "rock", "impassable": true }
-        ],
-        [
-          { "texture": "rock", "impassable": true },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          { "texture": "field" },
-          {
-            "texture": "field",
-            "occupant": {
-              "id": 2,
-              "link": "1/7/14",
-              "occupantType": "PORTAL"
-            }
-          },
-          { "texture": "rock", "impassable": true }
-        ],
-        [
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true },
-          { "texture": "rock", "impassable": true }
-        ]
+      "height": 22,
+      "width": 24,
+      "occupants": [
+        {
+          "id": 1,
+          "occupantType": "INHABITANT",
+          "inhabitantOrientation": "DOWN",
+          "characterSprite": 4,
+          "dialogue": [
+            "That Boy aint right!",
+            "He should care more about honoring his ancestors than technology.",
+            "The whole world is going to shit and every Pokemon after Gen 1 sucks."
+          ],
+          "position": { "x": 3, "y": 4 },
+          "rotating": true
+        },
+        {
+          "id": 2,
+          "occupantType": "INHABITANT",
+          "inhabitantOrientation": "RIGHT",
+          "characterSprite": 7,
+          "dialogue": ["Dude!", "Technology is freakin amazeballs."],
+          "position": { "x": 2, "y": 8 },
+          "rotating": true
+        },
+
+        {
+          "id": 3,
+          "item": { "item": { "name": "potion" }, "amount": 1 },
+          "occupantType": "ITEM",
+          "position": { "x": 3, "y": 0 }
+        },
+        {
+          "id": 4,
+          "link": "1/7/14",
+          "occupantType": "PORTAL",
+          "position": { "x": 4, "y": 0 }
+        }
       ]
     },
     {
       "id": 1,
       "name": "testmapCity",
-      "map": [
-        [
-          {
-            "texture": "field",
-            "occupant": {
-              "id": 1,
-              "item": { "name": "poke-ball", "amount": 1 },
-              "occupantType": "ITEM"
-            }
-          },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" }
-        ],
-        [
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" }
-        ],
-        [
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" }
-        ],
-        [
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" }
-        ],
-        [
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" }
-        ],
-        [
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" }
-        ],
-        [
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" }
-        ],
-        [
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          { "texture": "city" },
-          {
-            "texture": "city",
-            "occupant": {
-              "id": 2,
-              "link": "0/4/21",
-              "occupantType": "PORTAL"
-            }
-          }
-        ]
+      "height": 40,
+      "width": 40,
+      "occupants": [
+        {
+          "id": 1,
+          "link": "0/4/21",
+          "occupantType": "PORTAL",
+          "position": { "x": 4, "y": 21 }
+        }
       ]
     }
   ]

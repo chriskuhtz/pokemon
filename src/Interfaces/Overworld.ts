@@ -11,6 +11,7 @@ export interface BaseOccupant {
   occupantType: OccupantType;
   onClick?: () => void;
   onStep?: () => void;
+  position: { x: number; y: number };
 }
 
 export interface OverworldItem extends BaseOccupant {
@@ -26,13 +27,20 @@ export interface OverworldInhabitant extends BaseOccupant {
   inhabitantOrientation: Direction;
   characterSprite: number;
   dialogue: string[];
+  rotating?: boolean;
 }
 
 export type Occupant = OverworldPortal | OverworldItem | OverworldInhabitant;
 
 export type OccupantType = "ITEM" | "PORTAL" | "INHABITANT";
 
-export type OverWorldMap = { id: number; name: string; map: MapField[][] };
+export type OverWorldMap = {
+  id: number;
+  name: string;
+  occupants: Occupant[];
+  height: number;
+  width: number;
+};
 
 export type Direction = "UP" | "DOWN" | "LEFT" | "RIGHT";
 export type Position = { x: number; y: number };

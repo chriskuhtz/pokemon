@@ -12,6 +12,7 @@ const size = Math.min(
   Math.floor(window.innerWidth / 15),
   Math.floor(window.innerHeight / 9)
 );
+export const tickSpeed = 100;
 
 export const OverWorldScreen = (): JSX.Element => {
   const {
@@ -24,6 +25,8 @@ export const OverWorldScreen = (): JSX.Element => {
     isFetching,
     paragraphs,
     setParagraphs,
+    overwrittenNpcs,
+    rotatingNpcs,
   } = useOverworldScreen();
 
   const displayTextBox = paragraphs.length > 0;
@@ -32,7 +35,7 @@ export const OverWorldScreen = (): JSX.Element => {
     setParagraphs([])
   );
 
-  if (isFetching) {
+  if (!mapData || isFetching) {
     return <LoadingScreen />;
   }
 
@@ -57,8 +60,17 @@ export const OverWorldScreen = (): JSX.Element => {
           setIsButtonHeld={setIsButtonHeld}
         />{" "}
       </div>
+
       <Player size={size} orientation={playerOrientation} />
-      <CurrentMap map={mapData.map} size={size} position={position} />
+      <CurrentMap
+        size={size}
+        position={position}
+        occupants={mapData.occupants}
+        height={mapData.height}
+        width={mapData.width}
+        overwrittenNpcs={overwrittenNpcs}
+        rotatingNpcs={rotatingNpcs}
+      />
       <div
         style={{
           position: absolutePosition,
