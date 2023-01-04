@@ -2,6 +2,7 @@ import { getCurrentPlayerId } from "../../../../../../functions/handleCurrentPla
 import { OverworldItem } from "../../../../../../Interfaces/Overworld";
 import { useGetPlayerQuery } from "../../../../../../services/internal";
 import { useGetItemMetaDataByNameQuery } from "../../../../../../services/pokeApi";
+import { absolutePosition } from "../../../../../../UiComponents/GlobalStyles/globalStyles";
 
 export const OverworldItemDisplay = ({
   item,
@@ -30,7 +31,14 @@ export const OverworldItemDisplay = ({
     !currentMapProgress?.collectedItems.find((itemId) => itemId === item.id)
   ) {
     return (
-      <div style={{ zIndex: 2 }}>
+      <div
+        style={{
+          zIndex: 2,
+          position: absolutePosition,
+          top: item.position.y * size,
+          left: item.position.x * size,
+        }}
+      >
         <img
           style={{ position: "relative" }}
           alt={"item on the ground"}

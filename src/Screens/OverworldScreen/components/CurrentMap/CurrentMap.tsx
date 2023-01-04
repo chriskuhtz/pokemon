@@ -1,17 +1,27 @@
-import { MapField, Position } from "../../../../Interfaces/Overworld";
+import {
+  Direction,
+  Occupant,
+  Position,
+} from "../../../../Interfaces/Overworld";
 import { absolutePosition } from "../../../../UiComponents/GlobalStyles/globalStyles";
-import { Field } from "../Field/Field";
+import { FieldOccupant } from "../FieldOccupant/FieldOccupant";
 
 export const CurrentMap = ({
   size,
   position,
-
-  map,
+  occupants,
+  height,
+  width,
+  overwrittenNpcs,
+  rotatingNpcs,
 }: {
   size: number;
   position: Position;
-
-  map: MapField[][];
+  occupants: Occupant[];
+  height: number;
+  width: number;
+  overwrittenNpcs: { id: number; direction: Direction }[];
+  rotatingNpcs: { id: number; direction: Direction }[];
 }): JSX.Element => {
   return (
     <div
@@ -35,18 +45,21 @@ export const CurrentMap = ({
           left: (-position.x + 7) * size,
         }}
       >
-        {map.map((row, rowId) => (
-          <div style={{ display: "flex" }} key={rowId}>
-            {row.map((field, fieldId) => (
-              <Field
-                size={size}
-                field={field}
-                fieldId={fieldId}
-                rowId={rowId}
-                key={fieldId}
-              />
-            ))}
-          </div>
+        <img
+          src={`/assets/maps/PalletTown.png`}
+          height={size * height}
+          width={size * width}
+        />
+        {occupants.map((o) => (
+          <FieldOccupant
+            key={o.id}
+            occupant={o}
+            size={size}
+            overwrittenOrientation={
+              rotatingNpcs.find((npc) => npc.id === o.id)?.direction ??
+              overwrittenNpcs.find((npc) => npc.id === o.id)?.direction
+            }
+          />
         ))}
       </div>
     </div>

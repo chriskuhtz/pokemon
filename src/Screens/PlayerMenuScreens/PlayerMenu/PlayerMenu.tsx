@@ -32,7 +32,7 @@ export const PlayerMenu = (): JSX.Element => {
 
   return (
     <Container>
-      <BackButton />
+      <BackButton route={ROUTES.OVERWORLD} />
       <div style={{ display: "flex" }}>
         <div
           style={{

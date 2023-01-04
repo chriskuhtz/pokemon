@@ -25,7 +25,7 @@ export const useUpdateBag = () => {
       if (existingItemStackIndex === -1) {
         updatedBag.push(newItemStack);
       } else {
-        const existingStack = newItems[existingItemStackIndex];
+        const existingStack = bag.items[existingItemStackIndex];
         const updatedAmount = existingStack.amount + newItemStack.amount;
         updatedBag[existingItemStackIndex] = {
           ...updatedBag[existingItemStackIndex],
