@@ -5,6 +5,168 @@
       "name": "testmap",
       "height": 22,
       "width": 24,
+      "objects": [
+        {
+          "type": 3,
+          "id": 74386439,
+          "position": {
+            "x": 4,
+            "y": 4
+          }
+        },
+        {
+          "type": 3,
+          "id": 74386439,
+          "position": {
+            "x": 4,
+            "y": 5
+          }
+        },
+        {
+          "type": 3,
+          "id": 74386439,
+          "position": {
+            "x": 5,
+            "y": 4
+          }
+        },
+        {
+          "type": 3,
+          "id": 74386439,
+          "position": {
+            "x": 5,
+            "y": 5
+          }
+        },
+        {
+          "type": 2,
+          "id": 99654195425,
+          "position": {
+            "x": 10,
+            "y": 0
+          }
+        },
+        {
+          "type": 0,
+          "id": 99654195425,
+          "position": {
+            "x": 11,
+            "y": 0
+          }
+        },
+        {
+          "type": 0,
+          "id": 99654195425,
+          "position": {
+            "x": 12,
+            "y": 0
+          }
+        },
+        {
+          "type": 0,
+          "id": 99654195425,
+          "position": {
+            "x": 13,
+            "y": 0
+          }
+        },
+        {
+          "type": 0,
+          "id": 99654195425,
+          "position": {
+            "x": 10,
+            "y": 1
+          }
+        },
+        {
+          "type": 0,
+          "id": 99654195425,
+          "position": {
+            "x": 11,
+            "y": 1
+          }
+        },
+        {
+          "type": 0,
+          "id": 99654195425,
+          "position": {
+            "x": 12,
+            "y": 1
+          }
+        },
+        {
+          "type": 0,
+          "id": 99654195425,
+          "position": {
+            "x": 13,
+            "y": 1
+          }
+        },
+        {
+          "type": 0,
+          "id": 99654195425,
+          "position": {
+            "x": 10,
+            "y": 2
+          }
+        },
+        {
+          "type": 0,
+          "id": 99654195425,
+          "position": {
+            "x": 11,
+            "y": 2
+          }
+        },
+        {
+          "type": 0,
+          "id": 99654195425,
+          "position": {
+            "x": 12,
+            "y": 2
+          }
+        },
+        {
+          "type": 0,
+          "id": 99654195425,
+          "position": {
+            "x": 13,
+            "y": 2
+          }
+        },
+        {
+          "type": 0,
+          "id": 99654195425,
+          "position": {
+            "x": 10,
+            "y": 3
+          }
+        },
+        {
+          "type": 0,
+          "id": 99654195425,
+          "position": {
+            "x": 11,
+            "y": 3
+          }
+        },
+        {
+          "type": 0,
+          "id": 99654195425,
+          "position": {
+            "x": 12,
+            "y": 3
+          }
+        },
+        {
+          "type": 0,
+          "id": 99654195425,
+          "position": {
+            "x": 13,
+            "y": 3
+          }
+        }
+      ],
       "occupants": [
         {
           "id": 1,
@@ -57,5 +219,25 @@
         }
       ]
     }
+  ],
+
+  "objects": [
+    {
+      "id": 0,
+      "name": "Placeholder",
+      "height": 1,
+      "width": 1,
+      "impassable": true
+    },
+    { "id": 1, "name": "Rock", "height": 2, "width": 2, "impassable": true },
+    {
+      "id": 2,
+      "name": "Rock",
+      "description": "large rock",
+      "height": 4,
+      "width": 4,
+      "impassable": true
+    },
+    { "id": 3, "name": "Grass", "height": 1, "width": 1 }
   ]
 }

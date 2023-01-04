@@ -1,23 +1,26 @@
 import {
   Direction,
+  MapObjectInstance,
   Occupant,
   Position,
 } from "../../../../Interfaces/Overworld";
 import { absolutePosition } from "../../../../UiComponents/GlobalStyles/globalStyles";
+import { size } from "../../OverworldScreen";
 import { FieldOccupant } from "../FieldOccupant/FieldOccupant";
+import { MemoizedObjects } from "../Objects/Objects";
 
 export const CurrentMap = ({
-  size,
   position,
   occupants,
+  objects,
   height,
   width,
   overwrittenNpcs,
   rotatingNpcs,
 }: {
-  size: number;
   position: Position;
   occupants: Occupant[];
+  objects: MapObjectInstance[];
   height: number;
   width: number;
   overwrittenNpcs: { id: number; direction: Direction }[];
@@ -47,14 +50,15 @@ export const CurrentMap = ({
       >
         <img
           src={`/assets/maps/PalletTown.png`}
+          alt="palletTown"
           height={size * height}
           width={size * width}
         />
+        <MemoizedObjects objects={objects} />
         {occupants.map((o) => (
           <FieldOccupant
             key={o.id}
             occupant={o}
-            size={size}
             overwrittenOrientation={
               rotatingNpcs.find((npc) => npc.id === o.id)?.direction ??
               overwrittenNpcs.find((npc) => npc.id === o.id)?.direction

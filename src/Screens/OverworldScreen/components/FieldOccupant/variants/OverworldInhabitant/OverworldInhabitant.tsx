@@ -6,14 +6,15 @@ import {
   absolutePosition,
   relativePosition,
 } from "../../../../../../UiComponents/GlobalStyles/globalStyles";
+import { size } from "../../../../OverworldScreen";
 
 export const OverworldInhabitantDisplay = ({
   inhabitant,
-  size,
+
   overWrittenOrientation,
 }: {
   inhabitant: OverworldInhabitant;
-  size: number;
+
   overWrittenOrientation?: Direction;
 }): JSX.Element => {
   return (

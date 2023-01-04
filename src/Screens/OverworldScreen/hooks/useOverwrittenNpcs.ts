@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getClockwiseNextDirection } from "../../../functions/getClockwiseNextDirection";
 import { getOppositeDirection } from "../../../functions/getOppositeDirection";
 import { Direction, OverWorldMap } from "../../../Interfaces/Overworld";
@@ -37,7 +37,7 @@ export const useOverwrittenNpcs = (mapData?: OverWorldMap) => {
     removeFromRotating(id);
   };
 
-  const rotateNpcs = () => {
+  const rotateNpcs = useCallback(() => {
     const rotatedNpcs = rotatingNpcs.map((r) => {
       let newDirection =
         Math.random() > 0.9
@@ -47,7 +47,7 @@ export const useOverwrittenNpcs = (mapData?: OverWorldMap) => {
     });
 
     setRotatingNpcs(rotatedNpcs);
-  };
+  }, [rotatingNpcs]);
 
   useEffect(() => {
     if (mapData) {
@@ -57,7 +57,6 @@ export const useOverwrittenNpcs = (mapData?: OverWorldMap) => {
           rotators.push({ id: o.id, direction: o.inhabitantOrientation });
         }
       });
-
       setRotatingNpcs(rotators);
     }
   }, [mapData]);

@@ -1,7 +1,81 @@
 {
-  "players": [],
-  "teams": [],
-  "pcstorages": [],
-  "pokedexes": [],
-  "bags": []
+  "players": [
+    {
+      "id": 36191886590,
+      "name": "njl",
+      "character": 7,
+      "money": 3000,
+      "playerLocation": {
+        "mapId": 0,
+        "position": {
+          "y": 1,
+          "x": 3
+        },
+        "playerOrientation": "UP"
+      },
+      "overworldProgress": [
+        {
+          "mapId": 0,
+          "collectedItems": [
+            3
+          ]
+        }
+      ]
+    }
+  ],
+  "teams": [
+    {
+      "id": 36191886590,
+      "pokemon": [
+        {
+          "id": 18721962941,
+          "dexId": 4,
+          "ownerId": 36191886590,
+          "nickName": "kml"
+        }
+      ]
+    }
+  ],
+  "pcstorages": [
+    {
+      "id": 36191886590,
+      "pokemon": []
+    }
+  ],
+  "pokedexes": [
+    {
+      "id": 36191886590,
+      "seen": [
+        4
+      ],
+      "owned": [
+        4
+      ]
+    }
+  ],
+  "bags": [
+    {
+      "id": 36191886590,
+      "items": [
+        {
+          "item": {
+            "name": "potion"
+          },
+          "amount": 6
+        },
+        {
+          "item": {
+            "name": "poke-ball"
+          },
+          "amount": 5
+        },
+        {
+          "item": {
+            "name": "antidote"
+          },
+          "amount": 5
+        }
+      ]
+    }
+  ]
 }

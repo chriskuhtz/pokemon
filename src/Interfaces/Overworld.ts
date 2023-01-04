@@ -1,19 +1,12 @@
 import { ItemStack } from "./Bag";
 
-export interface MapField {
-  texture: string;
-  impassable?: boolean;
-  occupant?: Occupant;
-}
-
 export interface BaseOccupant {
   id: number;
   occupantType: OccupantType;
   onClick?: () => void;
   onStep?: () => void;
-  position: { x: number; y: number };
+  position: Position;
 }
-
 export interface OverworldItem extends BaseOccupant {
   occupantType: "ITEM";
   item: ItemStack;
@@ -34,10 +27,23 @@ export type Occupant = OverworldPortal | OverworldItem | OverworldInhabitant;
 
 export type OccupantType = "ITEM" | "PORTAL" | "INHABITANT";
 
+export interface MapObject {
+  type: number;
+  height: number;
+  width: number;
+  name: string;
+  impassable?: boolean;
+}
+export interface MapObjectInstance {
+  type: number;
+  id: number;
+  position: Position;
+}
 export type OverWorldMap = {
   id: number;
   name: string;
   occupants: Occupant[];
+  objects: MapObjectInstance[];
   height: number;
   width: number;
 };

@@ -8,7 +8,7 @@ import { MovementAndActionButtons } from "./components/MovementAndActionButtons/
 import { Player } from "./components/Player/Player";
 import { useOverworldScreen } from "./hooks/useOverworldScreen";
 
-const size = Math.min(
+export const size = Math.min(
   Math.floor(window.innerWidth / 15),
   Math.floor(window.innerHeight / 9)
 );
@@ -54,17 +54,16 @@ export const OverWorldScreen = (): JSX.Element => {
           }}
         />
         <MovementAndActionButtons
-          size={size}
           handleActionButtonClick={handleActionButtonClick}
           setNextMovement={setNextMovement}
           setIsButtonHeld={setIsButtonHeld}
         />{" "}
       </div>
 
-      <Player size={size} orientation={playerOrientation} />
+      <Player orientation={playerOrientation} />
       <CurrentMap
-        size={size}
         position={position}
+        objects={mapData.objects}
         occupants={mapData.occupants}
         height={mapData.height}
         width={mapData.width}
