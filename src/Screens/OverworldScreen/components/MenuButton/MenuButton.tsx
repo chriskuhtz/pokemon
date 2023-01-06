@@ -31,7 +31,7 @@ export const MenuButton = ({
           updatePlayer({ ...player, playerLocation: playerLocation });
           navigate(ROUTES.PLAYERMENU);
         }}
-        backgroundColor={"green"}
+        backgroundColor={"white"}
       >
         <BiMenu size={"large"} />
       </RoundButton>

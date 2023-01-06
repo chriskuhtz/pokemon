@@ -8,10 +8,10 @@
       "playerLocation": {
         "mapId": 0,
         "position": {
-          "y": 1,
-          "x": 3
+          "x": 3,
+          "y": 2
         },
-        "playerOrientation": "UP"
+        "playerOrientation": "LEFT"
       },
       "overworldProgress": [
         {
@@ -61,7 +61,7 @@
           "item": {
             "name": "potion"
           },
-          "amount": 6
+          "amount": 12
         },
         {
           "item": {
