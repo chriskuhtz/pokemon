@@ -5,11 +5,11 @@ import { size } from "../../OverworldScreen";
 
 export const MovementAndActionButtons = ({
   handleActionButtonClick,
-  setNextMovement,
+  setMovementDirection,
   setIsButtonHeld,
 }: {
   handleActionButtonClick: () => void;
-  setNextMovement: (x: Direction) => void;
+  setMovementDirection: (x: Direction) => void;
   setIsButtonHeld: (x: boolean) => void;
 }): JSX.Element => {
   return (
@@ -17,7 +17,7 @@ export const MovementAndActionButtons = ({
       <div
         style={{
           position: absolutePosition,
-          zIndex: 2,
+          zIndex: 1000,
           left: `${20 + size}px`,
           bottom: `${20 + size}px`,
         }}
@@ -34,7 +34,7 @@ export const MovementAndActionButtons = ({
       <div
         style={{
           position: absolutePosition,
-          zIndex: 2,
+          zIndex: 1000,
           right: `${20 + size}px`,
           bottom: `${20 + size * 2}px`,
         }}
@@ -44,7 +44,7 @@ export const MovementAndActionButtons = ({
           backgroundColor={"darkslategray"}
           size={size}
           onMouseDown={() => {
-            setNextMovement("UP");
+            setMovementDirection("UP");
             setIsButtonHeld(true);
           }}
           onMouseUp={() => setIsButtonHeld(false)}
@@ -55,7 +55,7 @@ export const MovementAndActionButtons = ({
       <div
         style={{
           position: absolutePosition,
-          zIndex: 2,
+          zIndex: 1000,
           right: `${20 + size * 2}px`,
           bottom: `${20 + size}px`,
         }}
@@ -66,7 +66,7 @@ export const MovementAndActionButtons = ({
           size={size}
           onMouseUp={() => setIsButtonHeld(false)}
           onMouseDown={() => {
-            setNextMovement("LEFT");
+            setMovementDirection("LEFT");
             setIsButtonHeld(true);
           }}
         >
@@ -76,7 +76,7 @@ export const MovementAndActionButtons = ({
       <div
         style={{
           position: absolutePosition,
-          zIndex: 2,
+          zIndex: 1000,
           right: `${20 + size}px`,
           bottom: `${20}px`,
         }}
@@ -86,7 +86,7 @@ export const MovementAndActionButtons = ({
           backgroundColor={"darkslategray"}
           size={size}
           onMouseDown={() => {
-            setNextMovement("DOWN");
+            setMovementDirection("DOWN");
             setIsButtonHeld(true);
           }}
           onMouseUp={() => setIsButtonHeld(false)}
@@ -97,7 +97,7 @@ export const MovementAndActionButtons = ({
       <div
         style={{
           position: absolutePosition,
-          zIndex: 2,
+          zIndex: 1000,
           right: `${20}px`,
           bottom: `${20 + size}px`,
         }}
@@ -107,7 +107,7 @@ export const MovementAndActionButtons = ({
           backgroundColor={"darkslategray"}
           size={size}
           onMouseDown={() => {
-            setNextMovement("RIGHT");
+            setMovementDirection("RIGHT");
             setIsButtonHeld(true);
           }}
           onMouseUp={() => setIsButtonHeld(false)}

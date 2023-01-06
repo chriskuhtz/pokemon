@@ -27,25 +27,24 @@ export type Occupant = OverworldPortal | OverworldItem | OverworldInhabitant;
 
 export type OccupantType = "ITEM" | "PORTAL" | "INHABITANT";
 
-export interface MapObject {
-  type: number;
-  height: number;
-  width: number;
-  name: string;
-  impassable?: boolean;
+export type EventLayerFieldType =
+  | "EMPTY"
+  | "BLOCKED"
+  | "ITEM"
+  | "PORTAL"
+  | "NPC";
+export interface EventLayerField {
+  type: EventLayerFieldType;
+  id?: number;
 }
-export interface MapObjectInstance {
-  type: number;
-  id: number;
-  position: Position;
-}
+export type EventLayer = EventLayerField[][];
+
 export type OverWorldMap = {
   id: number;
   name: string;
-  occupants: Occupant[];
-  objects: MapObjectInstance[];
-  height: number;
-  width: number;
+  eventLayer: EventLayer;
+  npcs: OverworldInhabitant[];
+  items: OverworldItem[];
 };
 
 export type Direction = "UP" | "DOWN" | "LEFT" | "RIGHT";

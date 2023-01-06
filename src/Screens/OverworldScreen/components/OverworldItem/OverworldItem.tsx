@@ -1,11 +1,12 @@
-import { getCurrentPlayerId } from "../../../../../../functions/handleCurrentPlayerId";
-import { OverworldItem } from "../../../../../../Interfaces/Overworld";
-import { useGetPlayerQuery } from "../../../../../../services/internal";
-import { useGetItemMetaDataByNameQuery } from "../../../../../../services/pokeApi";
-import { absolutePosition } from "../../../../../../UiComponents/GlobalStyles/globalStyles";
-import { size } from "../../../../OverworldScreen";
+import { memo } from "react";
+import { getCurrentPlayerId } from "../../../../functions/handleCurrentPlayerId";
+import { OverworldItem } from "../../../../Interfaces/Overworld";
+import { useGetPlayerQuery } from "../../../../services/internal";
+import { useGetItemMetaDataByNameQuery } from "../../../../services/pokeApi";
+import { absolutePosition } from "../../../../UiComponents/GlobalStyles/globalStyles";
+import { size } from "../../OverworldScreen";
 
-export const OverworldItemDisplay = ({
+const OverworldItemDisplay = ({
   item,
 }: {
   item: OverworldItem;
@@ -32,7 +33,7 @@ export const OverworldItemDisplay = ({
     return (
       <div
         style={{
-          zIndex: 2,
+          zIndex: 2 + item.position.y,
           position: absolutePosition,
           top: item.position.y * size,
           left: item.position.x * size,
@@ -50,3 +51,5 @@ export const OverworldItemDisplay = ({
 
   return <div></div>;
 };
+
+export const MemoizedOverworldItem = memo(OverworldItemDisplay);
