@@ -1,11 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { getOppositeDirection } from "../../../functions/getOppositeDirection";
+import { getCurrentPlayerId } from "../../../functions/handleCurrentPlayerId";
 import { Direction, OverworldInhabitant } from "../../../Interfaces/Overworld";
+import { useGetPlayerQuery } from "../../../services/internal";
 import { useGetMapQuery } from "../../../services/map";
 
 export const useOverwrittenNpcs = () => {
-  const mapId = 0;
-  const { data: mapData } = useGetMapQuery(mapId);
+  const currentId = useMemo(() => getCurrentPlayerId() ?? -1, []);
+  const { data: playerData } = useGetPlayerQuery(currentId);
+  const { data: mapData } = useGetMapQuery(
+    playerData?.playerLocation.mapId ?? 0
+  );
   const [overwrittenNpcs, setOverwrittenNpcs] = useState<OverworldInhabitant[]>(
     []
   );

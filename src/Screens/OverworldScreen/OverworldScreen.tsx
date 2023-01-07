@@ -1,9 +1,12 @@
+import { useMemo } from "react";
+import { getCurrentPlayerId } from "../../functions/handleCurrentPlayerId";
 import { useMultiTextBox } from "../../hooks/useMultiTextBox/useMultiTextBox";
+import { useGetPlayerQuery } from "../../services/internal";
 import { useGetMapQuery } from "../../services/map";
 import { absolutePosition } from "../../UiComponents/GlobalStyles/globalStyles";
 import { Pill } from "../../UiComponents/Pill/Pill";
 import { ErrorScreen } from "../ErrorScreen/ErrorScreen";
-import { HelperGrid } from "./components/HelperGrid/HelperGrid";
+import { MemoizedHelperGrid } from "./components/HelperGrid/HelperGrid";
 import { MenuButton } from "./components/MenuButton/MenuButton";
 import { MovementAndActionButtons } from "./components/MovementAndActionButtons/MovementAndActionButtons";
 import { MemoizedOverworldInhabitant } from "./components/OverworldInhabitant/OverworldInhabitant";
@@ -42,13 +45,17 @@ const backgroundLayerStyle = (x: number, y: number) => {
 };
 
 export const OverWorldScreen = (): JSX.Element => {
-  const { data: mapData } = useGetMapQuery(0);
+  const currentId = useMemo(() => getCurrentPlayerId() ?? -1, []);
+  const { data: playerData } = useGetPlayerQuery(currentId);
+  const { data: mapData } = useGetMapQuery(
+    playerData?.playerLocation.mapId ?? 0
+  );
   //hooks
-  const { playerLocation, updatePlayerLocation, nextField } =
+  const { playerLocation, updatePlayerLocation, nextPosition } =
     usePlayerCharacter();
   const { setMovementDirection, setIsButtonHeld } = usePlayerMovement(
     playerLocation,
-    nextField,
+    nextPosition,
     updatePlayerLocation
   );
   const { overwrittenNpcs, upsertOverwrittenNpc } = useOverwrittenNpcs();
@@ -59,7 +66,7 @@ export const OverWorldScreen = (): JSX.Element => {
     () => setParagraphs([])
   );
 
-  if (!overwrittenNpcs || !mapData) {
+  if (!overwrittenNpcs || !mapData || !playerData) {
     return <ErrorScreen />;
   }
   return (
@@ -69,7 +76,7 @@ export const OverWorldScreen = (): JSX.Element => {
           <MenuButton playerLocation={playerLocation} />
           <MovementAndActionButtons
             handleActionButtonClick={() => {
-              handleActionButtonClick(playerLocation, nextField);
+              handleActionButtonClick(playerLocation, nextPosition);
             }}
             setMovementDirection={setMovementDirection}
             setIsButtonHeld={setIsButtonHeld}
@@ -90,9 +97,9 @@ export const OverWorldScreen = (): JSX.Element => {
       >
         <img
           alt="palletTown"
-          src="assets/maps/PalletTown.png"
-          height={size * 22}
-          width={size * 24}
+          src={`assets/maps/${mapData.id}.png`}
+          height={size * mapData.height}
+          width={size * mapData.width}
         />
         {mapData.items.map((item) => (
           <MemoizedOverworldItem item={item} key={item.id} />
@@ -100,7 +107,7 @@ export const OverWorldScreen = (): JSX.Element => {
         {overwrittenNpcs.map((npc) => (
           <MemoizedOverworldInhabitant inhabitant={npc} key={npc.id} />
         ))}
-        <HelperGrid />
+        <MemoizedHelperGrid />
       </div>
       <div
         style={{

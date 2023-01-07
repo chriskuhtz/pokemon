@@ -6,7 +6,7 @@
       "character": 7,
       "money": 3000,
       "playerLocation": {
-        "mapId": 0,
+        "mapId": 1,
         "position": {
           "x": 3,
           "y": 2
@@ -16,9 +16,7 @@
       "overworldProgress": [
         {
           "mapId": 0,
-          "collectedItems": [
-            3
-          ]
+          "collectedItems": [3]
         }
       ]
     }
@@ -45,12 +43,8 @@
   "pokedexes": [
     {
       "id": 36191886590,
-      "seen": [
-        4
-      ],
-      "owned": [
-        4
-      ]
+      "seen": [4],
+      "owned": [4]
     }
   ],
   "bags": [

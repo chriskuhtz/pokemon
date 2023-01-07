@@ -12,12 +12,14 @@ import { tickSpeed } from "../OverworldScreen";
 
 export const usePlayerMovement = (
   playerLocation: PlayerLocation,
-  nextField: Position,
+  nextPosition: Position,
   updatePlayerLocation: (x: PlayerLocation) => void
 ) => {
   const currentId = useMemo(() => getCurrentPlayerId() ?? -1, []);
   const { data: playerData } = useGetPlayerQuery(currentId);
-  const { data: mapData } = useGetMapQuery(0);
+  const { data: mapData } = useGetMapQuery(
+    playerData?.playerLocation.mapId ?? 0
+  );
   const { notify } = useCustomToast();
   //movementStates
   const [movementDirection, setMovementDirection] = useState<
@@ -41,13 +43,13 @@ export const usePlayerMovement = (
         } else if (
           !isBlocked(
             mapData.eventLayer,
-            nextField,
+            nextPosition,
             getCollectedItems(playerData)
           )
         ) {
           updatePlayerLocation({
             ...playerLocation,
-            position: nextField,
+            position: nextPosition,
             playerOrientation: movementDirection,
           });
         }
