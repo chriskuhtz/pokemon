@@ -8,15 +8,17 @@
       "playerLocation": {
         "mapId": 1,
         "position": {
-          "x": 3,
-          "y": 2
+          "x": 13,
+          "y": 39
         },
-        "playerOrientation": "LEFT"
+        "playerOrientation": "UP"
       },
       "overworldProgress": [
         {
           "mapId": 0,
-          "collectedItems": [3]
+          "collectedItems": [
+            3
+          ]
         }
       ]
     }
@@ -43,8 +45,12 @@
   "pokedexes": [
     {
       "id": 36191886590,
-      "seen": [4],
-      "owned": [4]
+      "seen": [
+        4
+      ],
+      "owned": [
+        4
+      ]
     }
   ],
   "bags": [

@@ -16,7 +16,7 @@ export const useUpdatePlayerAttribute = () => {
     collectedItem,
   }: {
     playerLocation: PlayerLocation;
-    collectedItem: number;
+    collectedItem?: number;
   }) => {
     if (!playerData) {
       console.error("no playerData available");

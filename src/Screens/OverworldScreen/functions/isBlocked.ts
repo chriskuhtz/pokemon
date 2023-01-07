@@ -5,22 +5,22 @@ export const isBlocked = (
   position: Position,
   collectedItems: number[]
 ): boolean => {
-  const nextPosition = eventLayer[position.y][position.x];
+  const nextField = eventLayer[position.y][position.x];
 
   //avoid errors
-  if (!nextPosition) {
+  if (!nextField) {
     return true;
   }
   //unblocked fields
-  if (nextPosition.type === "EMPTY") {
+  if (nextField.type === "EMPTY") {
     return false;
   }
-  if (nextPosition.type === "PORTAL") {
+  if (nextField.type === "PORTAL") {
     return false;
   }
   if (
-    nextPosition.type === "ITEM" &&
-    collectedItems.find((item) => item === nextPosition.id)
+    nextField.type === "ITEM" &&
+    collectedItems.find((item) => item === nextField.id)
   ) {
     return false;
   }
