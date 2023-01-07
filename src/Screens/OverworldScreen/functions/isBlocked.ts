@@ -1,8 +1,14 @@
-import { EventLayer, Position } from "../../../Interfaces/Overworld";
+import {
+  EventLayer,
+  EventLayerLedge,
+  MovementDirection,
+  Position,
+} from "../../../Interfaces/Overworld";
 
 export const isBlocked = (
   eventLayer: EventLayer,
   position: Position,
+  movementDirection: MovementDirection,
   collectedItems: number[]
 ): boolean => {
   const nextField = eventLayer[position.y][position.x];
@@ -23,6 +29,12 @@ export const isBlocked = (
     collectedItems.find((item) => item === nextField.id)
   ) {
     return false;
+  }
+  if (nextField.type === "LEDGE") {
+    const ledge = nextField as EventLayerLedge;
+    if (ledge.direction === movementDirection) {
+      return false;
+    }
   }
 
   return true;

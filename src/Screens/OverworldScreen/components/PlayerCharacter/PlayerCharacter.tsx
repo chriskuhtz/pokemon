@@ -1,5 +1,5 @@
 import { getCurrentPlayerId } from "../../../../functions/handleCurrentPlayerId";
-import { Direction } from "../../../../Interfaces/Overworld";
+import { MovementDirection } from "../../../../Interfaces/Overworld";
 import { useGetPlayerQuery } from "../../../../services/internal";
 import { absolutePosition } from "../../../../UiComponents/GlobalStyles/globalStyles";
 import { size } from "../../OverworldScreen";
@@ -8,7 +8,7 @@ export const PlayerCharacter = ({
   orientation,
   y,
 }: {
-  orientation: Direction;
+  orientation: MovementDirection;
   y: number;
 }): JSX.Element => {
   const currentId = getCurrentPlayerId();

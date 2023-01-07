@@ -4,8 +4,8 @@ import { getCurrentPlayerId } from "../../../functions/handleCurrentPlayerId";
 import { useCustomToast } from "../../../hooks/useCustomToast/useCustomToast";
 import { useUpdatePlayerAttribute } from "../../../hooks/useUpdatePlayerAttribute/useUpdatePlayerAttribute";
 import {
-  Direction,
   EventLayerPortal,
+  MovementDirection,
   Position,
 } from "../../../Interfaces/Overworld";
 import { PlayerLocation } from "../../../Interfaces/Player";
@@ -13,6 +13,7 @@ import { useGetPlayerQuery } from "../../../services/internal";
 import { useGetMapQuery } from "../../../services/map";
 import { Pill } from "../../../UiComponents/Pill/Pill";
 import { getField } from "../functions/getField";
+import { getNewPosition } from "../functions/getNewPosition";
 import { isBlocked } from "../functions/isBlocked";
 import { tickSpeed } from "../OverworldScreen";
 
@@ -30,17 +31,17 @@ export const usePlayerMovement = (
   const { updatePlayerAttribute } = useUpdatePlayerAttribute();
   //movementStates
   const [movementDirection, setMovementDirection] = useState<
-    Direction | undefined
+    MovementDirection | undefined
   >(undefined);
   const [isButtonHeld, setIsButtonHeld] = useState<boolean>(false);
 
-  const changeDirection = (newOrientation: Direction) => {
+  const changeDirection = (newOrientation: MovementDirection) => {
     updatePlayerLocation({
       ...playerLocation,
       playerOrientation: newOrientation,
     });
   };
-  const move = (newPosition: Position, newOrientation: Direction) => {
+  const move = (newPosition: Position, newOrientation: MovementDirection) => {
     updatePlayerLocation({
       ...playerLocation,
       position: newPosition,
@@ -49,6 +50,13 @@ export const usePlayerMovement = (
   };
   const portal = (portal: EventLayerPortal) => {
     updatePlayerAttribute({ playerLocation: portal.to });
+  };
+  const jumpLedge = (ledgePosition: Position, direction: MovementDirection) => {
+    const positionAfterLedge = getNewPosition(ledgePosition, direction);
+    updatePlayerLocation({
+      ...playerLocation,
+      position: positionAfterLedge,
+    });
   };
 
   //movement effect
@@ -67,12 +75,18 @@ export const usePlayerMovement = (
       const blocked = isBlocked(
         mapData.eventLayer,
         nextPosition,
+        movementDirection,
         getCollectedItems(playerData)
       );
       const nextField = getField(mapData.eventLayer, nextPosition);
       //use Portal
       if (blocked === false && nextField?.type === "PORTAL") {
         portal(nextField as EventLayerPortal);
+        setMovementDirection(isButtonHeld ? movementDirection : undefined);
+        return;
+      }
+      if (blocked === false && nextField?.type === "LEDGE") {
+        jumpLedge(nextPosition, movementDirection);
         setMovementDirection(isButtonHeld ? movementDirection : undefined);
         return;
       }

@@ -3,7 +3,7 @@ import { getCurrentPlayerId } from "../../../functions/handleCurrentPlayerId";
 import { useUpdateBag } from "../../../hooks/useUpdateBag/useUpdateBag";
 import { useUpdatePlayerAttribute } from "../../../hooks/useUpdatePlayerAttribute/useUpdatePlayerAttribute";
 import {
-  Direction,
+  MovementDirection,
   OverworldInhabitant,
   OverworldItem,
   Position,
@@ -15,7 +15,7 @@ import { useGetMapQuery } from "../../../services/map";
 export const useActionButtonClick = (
   upsertOverwrittenNpc: (
     inhabitant: OverworldInhabitant,
-    approachDirection: Direction
+    approachDirection: MovementDirection
   ) => void
 ) => {
   const currentId = useMemo(() => getCurrentPlayerId() ?? -1, []);

@@ -1,6 +1,8 @@
-import { Direction } from "../Interfaces/Overworld";
+import { MovementDirection } from "../Interfaces/Overworld";
 
-export const getClockwiseNextDirection = (direction: Direction): Direction => {
+export const getClockwiseNextDirection = (
+  direction: MovementDirection
+): MovementDirection => {
   if (direction === "DOWN") return "LEFT";
   if (direction === "LEFT") return "UP";
   if (direction === "UP") return "RIGHT";
