@@ -1,18 +1,22 @@
+import { memo, useMemo } from "react";
+import { getCurrentPlayerId } from "../../../../functions/handleCurrentPlayerId";
+import { useGetPlayerQuery } from "../../../../services/internal";
 import { useGetMapQuery } from "../../../../services/map";
 import { absolutePosition } from "../../../../UiComponents/GlobalStyles/globalStyles";
 import { ErrorScreen } from "../../../ErrorScreen/ErrorScreen";
-import { LoadingScreen } from "../../../LoadingScreen/LoadingScreen";
 import { size } from "../../OverworldScreen";
 
-export const HelperGrid = (): JSX.Element => {
-  const { data: mapData, isFetching } = useGetMapQuery(0);
+const HelperGrid = (): JSX.Element => {
+  const currentId = useMemo(() => getCurrentPlayerId() ?? -1, []);
+  const { data: playerData } = useGetPlayerQuery(currentId);
+  const { data: mapData } = useGetMapQuery(
+    playerData?.playerLocation.mapId ?? 0
+  );
 
-  if (isFetching) {
-    return <LoadingScreen />;
-  }
   if (!mapData) {
     return <ErrorScreen />;
   }
+  console.log("render HelperGrid");
 
   return (
     <div
@@ -45,3 +49,5 @@ export const HelperGrid = (): JSX.Element => {
     </div>
   );
 };
+
+export const MemoizedHelperGrid = memo(HelperGrid);

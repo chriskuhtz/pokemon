@@ -13,7 +13,7 @@ export const usePlayerCharacter = () => {
   const [x, setX] = useState<number>(7);
   const [y, setY] = useState<number>(4);
   const [orientation, setOrientation] = useState<Direction>("DOWN");
-  const nextField: Position = useMemo(() => {
+  const nextPosition: Position = useMemo(() => {
     if (orientation === "UP") {
       return { y: y - 1, x: x };
     }
@@ -23,7 +23,10 @@ export const usePlayerCharacter = () => {
     if (orientation === "LEFT") {
       return { y: y, x: x - 1 };
     }
-    return { y: y + 1, x: x };
+    if (orientation === "DOWN") {
+      return { y: y + 1, x: x };
+    }
+    return { x: x, y: y };
   }, [x, y, orientation]);
 
   const updatePlayerLocation = (newLocation: PlayerLocation) => {
@@ -48,6 +51,6 @@ export const usePlayerCharacter = () => {
       playerOrientation: orientation,
     },
     updatePlayerLocation,
-    nextField,
+    nextPosition,
   };
 };

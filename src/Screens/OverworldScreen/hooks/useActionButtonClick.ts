@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { getCurrentPlayerId } from "../../../functions/handleCurrentPlayerId";
 import { useUpdateBag } from "../../../hooks/useUpdateBag/useUpdateBag";
 import { useUpdatePlayerAttribute } from "../../../hooks/useUpdatePlayerAttribute/useUpdatePlayerAttribute";
 import {
@@ -8,6 +9,7 @@ import {
   Position,
 } from "../../../Interfaces/Overworld";
 import { PlayerLocation } from "../../../Interfaces/Player";
+import { useGetPlayerQuery } from "../../../services/internal";
 import { useGetMapQuery } from "../../../services/map";
 
 export const useActionButtonClick = (
@@ -16,8 +18,11 @@ export const useActionButtonClick = (
     approachDirection: Direction
   ) => void
 ) => {
-  const mapId = 0;
-  const { data: mapData } = useGetMapQuery(mapId);
+  const currentId = useMemo(() => getCurrentPlayerId() ?? -1, []);
+  const { data: playerData } = useGetPlayerQuery(currentId);
+  const { data: mapData } = useGetMapQuery(
+    playerData?.playerLocation.mapId ?? 0
+  );
   const { addItems } = useUpdateBag();
   const { updatePlayerAttribute } = useUpdatePlayerAttribute();
 
@@ -37,12 +42,12 @@ export const useActionButtonClick = (
   };
   const handleActionButtonClick = (
     playerLocation: PlayerLocation,
-    nextField: Position
+    nextPosition: Position
   ) => {
     if (!mapData) {
       return;
     }
-    const clickedField = mapData.eventLayer[nextField.y][nextField.x];
+    const clickedField = mapData.eventLayer[nextPosition.y][nextPosition.x];
 
     if (clickedField?.type === "ITEM") {
       const item = mapData.items.find((item) => item.id === clickedField.id);

@@ -1,4 +1,5 @@
 import { ItemStack } from "./Bag";
+import { PlayerLocation } from "./Player";
 
 export interface BaseOccupant {
   id: number;
@@ -11,10 +12,7 @@ export interface OverworldItem extends BaseOccupant {
   occupantType: "ITEM";
   item: ItemStack;
 }
-export interface OverworldPortal extends BaseOccupant {
-  occupantType: "PORTAL";
-  link: string;
-}
+
 export interface OverworldInhabitant extends BaseOccupant {
   occupantType: "INHABITANT";
   inhabitantOrientation: Direction;
@@ -23,7 +21,7 @@ export interface OverworldInhabitant extends BaseOccupant {
   rotating?: boolean;
 }
 
-export type Occupant = OverworldPortal | OverworldItem | OverworldInhabitant;
+export type Occupant = OverworldItem | OverworldInhabitant;
 
 export type OccupantType = "ITEM" | "PORTAL" | "INHABITANT";
 
@@ -33,15 +31,22 @@ export type EventLayerFieldType =
   | "ITEM"
   | "PORTAL"
   | "NPC";
-export interface EventLayerField {
+
+export interface EventLayerBaseField {
   type: EventLayerFieldType;
   id?: number;
 }
+export interface EventLayerPortal extends EventLayerBaseField {
+  to: PlayerLocation;
+}
+export type EventLayerField = EventLayerBaseField | EventLayerPortal;
 export type EventLayer = EventLayerField[][];
 
 export type OverWorldMap = {
   id: number;
   name: string;
+  height: number;
+  width: number;
   eventLayer: EventLayer;
   npcs: OverworldInhabitant[];
   items: OverworldItem[];
