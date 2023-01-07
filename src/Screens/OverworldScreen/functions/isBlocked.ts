@@ -24,6 +24,9 @@ export const isBlocked = (
   if (nextField.type === "PORTAL") {
     return false;
   }
+  if (nextField.type === "ENCOUNTER") {
+    return false;
+  }
   if (
     nextField.type === "ITEM" &&
     collectedItems.find((item) => item === nextField.id)

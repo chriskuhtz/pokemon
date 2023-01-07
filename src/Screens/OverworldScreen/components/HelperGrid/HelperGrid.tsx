@@ -16,7 +16,6 @@ const HelperGrid = (): JSX.Element => {
   if (!mapData) {
     return <ErrorScreen />;
   }
-  console.log("render HelperGrid");
 
   return (
     <div

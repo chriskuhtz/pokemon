@@ -31,7 +31,8 @@ export type EventLayerFieldType =
   | "ITEM"
   | "PORTAL"
   | "NPC"
-  | "LEDGE";
+  | "LEDGE"
+  | "ENCOUNTER";
 
 export interface EventLayerBaseField {
   type: EventLayerFieldType;
@@ -54,6 +55,7 @@ export type OverWorldMap = {
   eventLayer: EventLayer;
   npcs: OverworldInhabitant[];
   items: OverworldItem[];
+  encounters?: string[];
 };
 
 export type MovementDirection = "UP" | "DOWN" | "LEFT" | "RIGHT";
