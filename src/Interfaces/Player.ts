@@ -1,4 +1,4 @@
-import { Direction, Position } from "./Overworld";
+import { MovementDirection, Position } from "./Overworld";
 
 export interface Player {
   id: number;
@@ -11,7 +11,7 @@ export interface Player {
 
 export interface PlayerLocation {
   mapId: number;
-  playerOrientation: Direction;
+  playerOrientation: MovementDirection;
   position: Position;
 }
 

@@ -1,7 +1,7 @@
 import { memo, useEffect, useState } from "react";
 import { getClockwiseNextDirection } from "../../../../functions/getClockwiseNextDirection";
 import {
-  Direction,
+  MovementDirection,
   OverworldInhabitant,
 } from "../../../../Interfaces/Overworld";
 import {
@@ -15,7 +15,7 @@ export const OverworldInhabitantDisplay = ({
 }: {
   inhabitant: OverworldInhabitant;
 }): JSX.Element => {
-  const [orientation, setOrientation] = useState<Direction>(
+  const [orientation, setOrientation] = useState<MovementDirection>(
     inhabitant.inhabitantOrientation
   );
 

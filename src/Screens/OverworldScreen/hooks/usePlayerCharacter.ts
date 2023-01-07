@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { getCurrentPlayerId } from "../../../functions/handleCurrentPlayerId";
-import { Direction, Position } from "../../../Interfaces/Overworld";
+import { MovementDirection, Position } from "../../../Interfaces/Overworld";
 import { PlayerLocation } from "../../../Interfaces/Player";
 import { useGetPlayerQuery } from "../../../services/internal";
+import { getNewPosition } from "../functions/getNewPosition";
 
 export const usePlayerCharacter = () => {
   //externalData
@@ -12,21 +13,9 @@ export const usePlayerCharacter = () => {
   //Playerstates
   const [x, setX] = useState<number>(7);
   const [y, setY] = useState<number>(4);
-  const [orientation, setOrientation] = useState<Direction>("DOWN");
+  const [orientation, setOrientation] = useState<MovementDirection>("DOWN");
   const nextPosition: Position = useMemo(() => {
-    if (orientation === "UP") {
-      return { y: y - 1, x: x };
-    }
-    if (orientation === "RIGHT") {
-      return { y: y, x: x + 1 };
-    }
-    if (orientation === "LEFT") {
-      return { y: y, x: x - 1 };
-    }
-    if (orientation === "DOWN") {
-      return { y: y + 1, x: x };
-    }
-    return { x: x, y: y };
+    return getNewPosition({ x: x, y: y }, orientation) ?? { x: x, y: y };
   }, [x, y, orientation]);
 
   const updatePlayerLocation = (newLocation: PlayerLocation) => {

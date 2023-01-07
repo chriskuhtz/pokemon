@@ -1,7 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { getOppositeDirection } from "../../../functions/getOppositeDirection";
 import { getCurrentPlayerId } from "../../../functions/handleCurrentPlayerId";
-import { Direction, OverworldInhabitant } from "../../../Interfaces/Overworld";
+import {
+  MovementDirection,
+  OverworldInhabitant,
+} from "../../../Interfaces/Overworld";
 import { useGetPlayerQuery } from "../../../services/internal";
 import { useGetMapQuery } from "../../../services/map";
 
@@ -17,7 +20,7 @@ export const useOverwrittenNpcs = () => {
 
   const upsertOverwrittenNpc = (
     inhabitant: OverworldInhabitant,
-    approachDirection: Direction
+    approachDirection: MovementDirection
   ) => {
     const newDirection = getOppositeDirection(approachDirection);
     const newNpc = {

@@ -1,4 +1,4 @@
-import { Direction } from "../../../../Interfaces/Overworld";
+import { MovementDirection } from "../../../../Interfaces/Overworld";
 import { absolutePosition } from "../../../../UiComponents/GlobalStyles/globalStyles";
 import { RoundButton } from "../../../../UiComponents/RoundButton/RoundButton";
 import { size } from "../../OverworldScreen";
@@ -9,7 +9,7 @@ export const MovementAndActionButtons = ({
   setIsButtonHeld,
 }: {
   handleActionButtonClick: () => void;
-  setMovementDirection: (x: Direction) => void;
+  setMovementDirection: (x: MovementDirection) => void;
   setIsButtonHeld: (x: boolean) => void;
 }): JSX.Element => {
   return (

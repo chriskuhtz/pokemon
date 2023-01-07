@@ -15,7 +15,7 @@ export interface OverworldItem extends BaseOccupant {
 
 export interface OverworldInhabitant extends BaseOccupant {
   occupantType: "INHABITANT";
-  inhabitantOrientation: Direction;
+  inhabitantOrientation: MovementDirection;
   characterSprite: number;
   dialogue: string[];
   rotating?: boolean;
@@ -30,7 +30,8 @@ export type EventLayerFieldType =
   | "BLOCKED"
   | "ITEM"
   | "PORTAL"
-  | "NPC";
+  | "NPC"
+  | "LEDGE";
 
 export interface EventLayerBaseField {
   type: EventLayerFieldType;
@@ -38,6 +39,9 @@ export interface EventLayerBaseField {
 }
 export interface EventLayerPortal extends EventLayerBaseField {
   to: PlayerLocation;
+}
+export interface EventLayerLedge extends EventLayerBaseField {
+  direction: MovementDirection;
 }
 export type EventLayerField = EventLayerBaseField | EventLayerPortal;
 export type EventLayer = EventLayerField[][];
@@ -52,5 +56,5 @@ export type OverWorldMap = {
   items: OverworldItem[];
 };
 
-export type Direction = "UP" | "DOWN" | "LEFT" | "RIGHT";
+export type MovementDirection = "UP" | "DOWN" | "LEFT" | "RIGHT";
 export type Position = { x: number; y: number };
