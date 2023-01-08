@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useUpdatePlayerAttribute } from "../../../hooks/useUpdatePlayerAttribute/useUpdatePlayerAttribute";
 import {
   EventLayerPortal,
   MovementDirection,
@@ -31,7 +30,6 @@ export const useMovementInterval = (
     movementDirection
   );
   const { randomRouteEncounter } = useHandleEncounter();
-  const { updatePlayerAttribute } = useUpdatePlayerAttribute();
   //movement effect
   useEffect(() => {
     const movementInternal = setInterval(() => {
@@ -64,10 +62,7 @@ export const useMovementInterval = (
       }
       //check for encounter
       if (blocked === false && nextField?.type === "ENCOUNTER") {
-        updatePlayerAttribute({
-          playerLocation: { ...playerLocation, position: nextPosition },
-        });
-        randomRouteEncounter();
+        randomRouteEncounter({ ...playerLocation, position: nextPosition });
       }
       //move
       if (blocked === false) {

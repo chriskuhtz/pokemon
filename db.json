@@ -8,10 +8,10 @@
       "playerLocation": {
         "mapId": 1,
         "position": {
-          "y": 9,
-          "x": 12
+          "y": 6,
+          "x": 15
         },
-        "playerOrientation": "UP"
+        "playerOrientation": "RIGHT"
       },
       "overworldProgress": []
     }
@@ -39,7 +39,8 @@
     {
       "id": 84552142584,
       "seen": [
-        15
+        15,
+        17
       ],
       "owned": []
     }
