@@ -4,18 +4,27 @@ import { useCustomToast } from "../../hooks/useCustomToast/useCustomToast";
 import { useSortAndUpdatePokedex } from "../../hooks/useSortAndUpdatePokedex/useSortAndUpdatePokedex";
 import { OpponentInitializer } from "../../Interfaces/Opponent";
 import { useGetPokemonMetaDataByIdQuery } from "../../services/pokeApi";
+import { RoundButton } from "../../UiComponents/RoundButton/RoundButton";
 import { ErrorScreen } from "../ErrorScreen/ErrorScreen";
+import { useRunAway } from "./hooks/useRunAway";
 
 export const BattleScreen = ({}: {}): JSX.Element => {
-  const { notify } = useCustomToast();
+  //location and state
   const location = useLocation();
   const opponent: OpponentInitializer = location.state;
-
-  const [activePokemon, setActivePokemon] = useState<number>(
+  const [activePokemonId, setactivePokemonId] = useState<number>(
     opponent.pokemon[0]
   );
-  const { data } = useGetPokemonMetaDataByIdQuery(activePokemon);
+  //external Data
+
+  const { data } = useGetPokemonMetaDataByIdQuery(activePokemonId);
+
+  //hooks
+  const { notify } = useCustomToast();
   const { sortAndUpdatePokedex } = useSortAndUpdatePokedex();
+  const { tryToRunAway } = useRunAway();
+
+  //state
 
   useEffect(() => {
     if (data) {
@@ -31,6 +40,7 @@ export const BattleScreen = ({}: {}): JSX.Element => {
   return (
     <div>
       !BATTLE!
+      <RoundButton onClick={tryToRunAway}>Run Away</RoundButton>
       <img src={data.sprites.other["official-artwork"].front_default} />
     </div>
   );

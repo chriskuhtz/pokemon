@@ -18,7 +18,7 @@ export const useHandleEncounter = () => {
   const { updatePlayerAttribute } = useUpdatePlayerAttribute();
 
   const randomRouteEncounter = (newLocation: PlayerLocation) => {
-    if (!mapData?.encounters || Math.random() < 0.8) {
+    if (!mapData?.encounters || Math.random() < 0.3) {
       return;
     }
     const { encounters } = mapData;
