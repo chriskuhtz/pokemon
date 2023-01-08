@@ -36,7 +36,7 @@ export const PokedexListItem = ({
           {" "}
           <img
             alt={data.name}
-            src={data.sprites.front_default}
+            src={data.sprites.other["official-artwork"].front_default}
             style={{
               margin: "-1rem",
               filter: owned ? "none" : "grayscale(1)",

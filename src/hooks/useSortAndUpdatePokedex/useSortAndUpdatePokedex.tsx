@@ -1,18 +1,18 @@
 import { useMemo } from "react";
 import { getCurrentPlayerId } from "../../functions/handleCurrentPlayerId";
 import {
-  useGetPokedexQuery,
+  useLazyGetPokedexQuery,
   useUpdatePokedexMutation,
 } from "../../services/internal";
 import { useLazyGetPokemonMetaDataByIdQuery } from "../../services/pokeApi";
-import { Pill } from "../../UiComponents/Pill/Pill";
 import { useCustomToast } from "../useCustomToast/useCustomToast";
 
 export const useSortAndUpdatePokedex = () => {
   const currentId = useMemo(() => getCurrentPlayerId() ?? -1, []);
-  const { data: pokedex } = useGetPokedexQuery(currentId);
+
   const [updatePokedex] = useUpdatePokedexMutation();
   const [getPokemonMetaDataById] = useLazyGetPokemonMetaDataByIdQuery();
+  const [getPokedex] = useLazyGetPokedexQuery();
   const { notify } = useCustomToast();
 
   const isIncluded = (array: number[], newEntry: number) => {
@@ -32,7 +32,14 @@ export const useSortAndUpdatePokedex = () => {
   };
 
   const sortAndUpdatePokedex = async (newEntry: number, owned?: boolean) => {
-    const { name } = await getPokemonMetaDataById(newEntry).unwrap();
+    const pokemon = await getPokemonMetaDataById(newEntry).unwrap();
+    const pokedex = await getPokedex(currentId).unwrap();
+
+    console.log(
+      pokedex,
+      !isIncluded(pokedex.seen, newEntry),
+      (owned && !isIncluded(pokedex.owned, newEntry)) || !owned
+    );
     if (
       pokedex &&
       !isIncluded(pokedex.seen, newEntry) &&
@@ -46,12 +53,10 @@ export const useSortAndUpdatePokedex = () => {
 
       await updatePokedex(updatedDex);
       notify(
-        <Pill>
-          <>
-            {owned ? "registered " : "seen "}
-            {name}
-          </>
-        </Pill>
+        <>
+          {owned ? "registered " : "seen "}
+          {pokemon.name}
+        </>
       );
     } else console.error("could not load pokedex");
   };

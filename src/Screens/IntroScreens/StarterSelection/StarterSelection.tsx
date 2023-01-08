@@ -107,7 +107,9 @@ export const StarterSelection = (): JSX.Element => {
                 >
                   <img
                     alt={pokemon.name}
-                    src={pokemon.sprites.front_default}
+                    src={
+                      pokemon.sprites.other["official-artwork"].front_default
+                    }
                     height="120px"
                   />
                 </InvisibleButton>

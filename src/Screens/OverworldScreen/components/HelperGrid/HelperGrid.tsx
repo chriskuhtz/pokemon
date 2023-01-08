@@ -10,13 +10,12 @@ const HelperGrid = (): JSX.Element => {
   const currentId = useMemo(() => getCurrentPlayerId() ?? -1, []);
   const { data: playerData } = useGetPlayerQuery(currentId);
   const { data: mapData } = useGetMapQuery(
-    playerData?.playerLocation.mapId ?? 0
+    playerData?.playerLocation.mapId ?? -1
   );
 
   if (!mapData) {
     return <ErrorScreen />;
   }
-  console.log("render HelperGrid");
 
   return (
     <div

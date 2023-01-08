@@ -1,67 +1,59 @@
 {
   "players": [
     {
-      "id": 36191886590,
-      "name": "njl",
-      "character": 7,
+      "id": 84552142584,
+      "name": "njnl",
+      "character": 2,
       "money": 3000,
       "playerLocation": {
         "mapId": 1,
         "position": {
-          "x": 13,
-          "y": 39
+          "y": 6,
+          "x": 15
         },
-        "playerOrientation": "UP"
+        "playerOrientation": "RIGHT"
       },
-      "overworldProgress": [
-        {
-          "mapId": 0,
-          "collectedItems": [
-            3
-          ]
-        }
-      ]
+      "overworldProgress": []
     }
   ],
   "teams": [
     {
-      "id": 36191886590,
+      "id": 84552142584,
       "pokemon": [
         {
-          "id": 18721962941,
-          "dexId": 4,
-          "ownerId": 36191886590,
-          "nickName": "kml"
+          "id": 37463457718,
+          "dexId": 7,
+          "ownerId": 84552142584,
+          "nickName": "rfett"
         }
       ]
     }
   ],
   "pcstorages": [
     {
-      "id": 36191886590,
+      "id": 84552142584,
       "pokemon": []
     }
   ],
   "pokedexes": [
     {
-      "id": 36191886590,
+      "id": 84552142584,
       "seen": [
-        4
+        15,
+        17
       ],
-      "owned": [
-        4
-      ]
+      "owned": []
     }
   ],
   "bags": [
     {
-      "id": 36191886590,
+      "id": 84552142584,
       "items": [
         {
           "item": {
             "name": "potion"
           },
-          "amount": 12
+          "amount": 5
         },
         {
           "item": {

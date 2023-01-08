@@ -12,7 +12,7 @@ export const useOverwrittenNpcs = () => {
   const currentId = useMemo(() => getCurrentPlayerId() ?? -1, []);
   const { data: playerData } = useGetPlayerQuery(currentId);
   const { data: mapData } = useGetMapQuery(
-    playerData?.playerLocation.mapId ?? 0
+    playerData?.playerLocation.mapId ?? -1
   );
   const [overwrittenNpcs, setOverwrittenNpcs] = useState<OverworldInhabitant[]>(
     []

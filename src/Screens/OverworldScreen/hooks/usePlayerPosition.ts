@@ -5,7 +5,7 @@ import { PlayerLocation } from "../../../Interfaces/Player";
 import { useGetPlayerQuery } from "../../../services/internal";
 import { getNewPosition } from "../functions/getNewPosition";
 
-export const usePlayerCharacter = () => {
+export const usePlayerPosition = () => {
   //externalData
   const currentId = useMemo(() => getCurrentPlayerId() ?? -1, []);
   const { data: playerData, isFetching: isPlayerDataFetching } =
@@ -14,6 +14,7 @@ export const usePlayerCharacter = () => {
   const [x, setX] = useState<number>(7);
   const [y, setY] = useState<number>(4);
   const [orientation, setOrientation] = useState<MovementDirection>("DOWN");
+  const [mapId, setMapId] = useState<number>(-1);
   const nextPosition: Position = useMemo(() => {
     return getNewPosition({ x: x, y: y }, orientation) ?? { x: x, y: y };
   }, [x, y, orientation]);
@@ -22,6 +23,7 @@ export const usePlayerCharacter = () => {
     setX(newLocation.position.x);
     setY(newLocation.position.y);
     setOrientation(newLocation.playerOrientation);
+    setMapId(newLocation.mapId);
   };
 
   //effects
@@ -35,7 +37,7 @@ export const usePlayerCharacter = () => {
     playerData,
     isPlayerDataFetching,
     playerLocation: {
-      mapId: 0,
+      mapId: mapId,
       position: { x: x, y: y },
       playerOrientation: orientation,
     },

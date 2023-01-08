@@ -24,9 +24,8 @@ export const TeamMemberOverview = ({
     >
       <img
         alt={metadata.name}
-        src={metadata.sprites.front_default}
-        style={{ margin: "-1.25rem" }}
-        height="120px"
+        src={metadata.sprites.other["official-artwork"].front_default}
+        height="80px"
       />
     </Box>
   );
