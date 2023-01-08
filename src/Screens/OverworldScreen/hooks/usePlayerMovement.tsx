@@ -6,7 +6,6 @@ import { MovementDirection, Position } from "../../../Interfaces/Overworld";
 import { PlayerLocation } from "../../../Interfaces/Player";
 import { useGetPlayerQuery } from "../../../services/internal";
 import { useGetMapQuery } from "../../../services/map";
-import { Pill } from "../../../UiComponents/Pill/Pill";
 import { useMovementInterval } from "./useMovementInterval";
 
 export const usePlayerMovement = (
@@ -17,7 +16,7 @@ export const usePlayerMovement = (
   const currentId = useMemo(() => getCurrentPlayerId() ?? -1, []);
   const { data: playerData } = useGetPlayerQuery(currentId);
   const { data: mapData } = useGetMapQuery(
-    playerData?.playerLocation.mapId ?? 0
+    playerData?.playerLocation.mapId ?? -1
   );
   const { notify } = useCustomToast();
 
@@ -41,7 +40,7 @@ export const usePlayerMovement = (
   //Location Toast
   useEffect(() => {
     if (mapData?.name) {
-      notify(<Pill>{mapData.name}</Pill>);
+      notify(mapData.name);
     }
   }, [mapData]);
 

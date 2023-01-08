@@ -23,8 +23,7 @@ export const SinglePokemonScreen = (): JSX.Element => {
         <BackButton />
         <img
           alt={metadata.name}
-          src={metadata.sprites.front_default}
-          style={{ margin: "-1.25rem" }}
+          src={metadata.sprites.other["official-artwork"].front_default}
           height="120px"
         />
         <h2>

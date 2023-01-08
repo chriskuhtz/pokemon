@@ -10,7 +10,7 @@ const HelperGrid = (): JSX.Element => {
   const currentId = useMemo(() => getCurrentPlayerId() ?? -1, []);
   const { data: playerData } = useGetPlayerQuery(currentId);
   const { data: mapData } = useGetMapQuery(
-    playerData?.playerLocation.mapId ?? 0
+    playerData?.playerLocation.mapId ?? -1
   );
 
   if (!mapData) {

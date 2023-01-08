@@ -2,7 +2,6 @@ import { useMemo } from "react";
 import { getCurrentPlayerId } from "../../functions/handleCurrentPlayerId";
 import { Bag, ItemStack } from "../../Interfaces/Bag";
 import { useGetBagQuery, useUpdateBagMutation } from "../../services/internal";
-import { Pill } from "../../UiComponents/Pill/Pill";
 import { useCustomToast } from "../useCustomToast/useCustomToast";
 
 export const useUpdateBag = () => {
@@ -42,11 +41,9 @@ export const useUpdateBag = () => {
       await updateBag(updatedBag);
       newItems.forEach((itemStack) =>
         notify(
-          <Pill>
-            <>
-              received {itemStack.amount} {itemStack.item.name}
-            </>
-          </Pill>
+          <>
+            received {itemStack.amount} {itemStack.item.name}
+          </>
         )
       );
     }

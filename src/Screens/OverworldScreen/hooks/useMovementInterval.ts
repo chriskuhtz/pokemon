@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useUpdatePlayerAttribute } from "../../../hooks/useUpdatePlayerAttribute/useUpdatePlayerAttribute";
 import {
   EventLayerPortal,
   MovementDirection,
@@ -9,6 +10,7 @@ import { PlayerLocation } from "../../../Interfaces/Player";
 import { getField } from "../functions/getField";
 import { isBlocked } from "../functions/isBlocked";
 import { tickSpeed } from "../OverworldScreen";
+import { useHandleEncounter } from "./useHandleEncounter";
 import { useMovementOptions } from "./useMovementOptions";
 
 export const useMovementInterval = (
@@ -28,14 +30,8 @@ export const useMovementInterval = (
     playerLocation,
     movementDirection
   );
-
-  const handleEncounter = (encounters?: string[]) => {
-    if (!encounters) {
-      return;
-    }
-    const random = Math.floor(Math.random() * encounters.length);
-    console.log(encounters[random]);
-  };
+  const { randomRouteEncounter } = useHandleEncounter();
+  const { updatePlayerAttribute } = useUpdatePlayerAttribute();
   //movement effect
   useEffect(() => {
     const movementInternal = setInterval(() => {
@@ -68,7 +64,10 @@ export const useMovementInterval = (
       }
       //check for encounter
       if (blocked === false && nextField?.type === "ENCOUNTER") {
-        handleEncounter(mapData.encounters);
+        updatePlayerAttribute({
+          playerLocation: { ...playerLocation, position: nextPosition },
+        });
+        randomRouteEncounter();
       }
       //move
       if (blocked === false) {

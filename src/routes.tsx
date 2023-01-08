@@ -1,4 +1,5 @@
 import { createRoutesFromElements, Route } from "react-router-dom";
+import { BattleScreen } from "./Screens/BattleScreen/BattleScreen";
 import { CharacterOverview } from "./Screens/IntroScreens/CharacterOverview/CharacterOverview";
 import { CharacterSelection } from "./Screens/IntroScreens/CharacterSelection/CharacterSelection";
 import { Intro } from "./Screens/IntroScreens/Intro/Intro";
@@ -30,6 +31,8 @@ export enum ROUTES {
   BAG = "/menu/bag",
   //overworld route
   OVERWORLD = "/overworld",
+  //battle route
+  BATTLE = "/battle",
 }
 
 export const createdRoutes = createRoutesFromElements([
@@ -49,4 +52,6 @@ export const createdRoutes = createRoutesFromElements([
   <Route path={ROUTES.BAG} element={<BagScreen />} />,
   //overworld route
   <Route path={ROUTES.OVERWORLD} element={<OverWorldScreen />} />,
+  //battle route
+  <Route path={ROUTES.BATTLE} element={<BattleScreen />} />,
 ]);

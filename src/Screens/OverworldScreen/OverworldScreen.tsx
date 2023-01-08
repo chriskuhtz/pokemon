@@ -12,8 +12,8 @@ import { MemoizedOverworldItem } from "./components/OverworldItem/OverworldItem"
 import { PlayerCharacter } from "./components/PlayerCharacter/PlayerCharacter";
 import { useActionButtonClick } from "./hooks/useActionButtonClick";
 import { useOverwrittenNpcs } from "./hooks/useOverwrittenNpcs";
-import { usePlayerCharacter } from "./hooks/usePlayerCharacter";
 import { usePlayerMovement } from "./hooks/usePlayerMovement";
+import { usePlayerPosition } from "./hooks/usePlayerPosition";
 import {
   backgroundLayerStyle,
   backgroundStyle,
@@ -30,11 +30,11 @@ export const OverWorldScreen = (): JSX.Element => {
   const currentId = useMemo(() => getCurrentPlayerId() ?? -1, []);
   const { data: playerData } = useGetPlayerQuery(currentId);
   const { data: mapData } = useGetMapQuery(
-    playerData?.playerLocation.mapId ?? 0
+    playerData?.playerLocation.mapId ?? -1
   );
   //hooks
   const { playerLocation, updatePlayerLocation, nextPosition } =
-    usePlayerCharacter();
+    usePlayerPosition();
   const { setMovementDirection, setIsButtonHeld } = usePlayerMovement(
     playerLocation,
     nextPosition,

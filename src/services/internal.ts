@@ -144,4 +144,9 @@ export const {
   useGetBagQuery,
   useUpdateBagMutation,
   useLazyGetBagQuery,
+  useLazyGetPCStorageQuery,
+  useLazyGetPlayerQuery,
+  useLazyGetPlayersQuery,
+  useLazyGetPokedexQuery,
+  useLazyGetTeamQuery,
 } = internalApi;

@@ -634,7 +634,7 @@
       "width": 24,
       "npcs": [],
       "items": [],
-      "encounters": ["dragonite", "lucario", "gengar", "kingdra"],
+      "encounters": [15, 17, 29, 90],
       "eventLayer": [
         [
           { "type": "EMPTY" },
